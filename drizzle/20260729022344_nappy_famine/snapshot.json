@@ -1,7 +1,7 @@
 {
   "version": "8",
   "dialect": "postgres",
-  "id": "aaf1d7fc-a811-488c-95b7-b84d2eab0c56",
+  "id": "9df3dc97-f791-4417-b100-cb4d3f94d513",
   "prevIds": [
     "00000000-0000-0000-0000-000000000000"
   ],
@@ -82,61 +82,61 @@
     },
     {
       "isRlsEnabled": false,
-      "name": "curso",
+      "name": "Curso",
       "entityType": "tables",
       "schema": "public"
     },
     {
       "isRlsEnabled": false,
-      "name": "curso_categoria",
+      "name": "CursoCategoria",
       "entityType": "tables",
       "schema": "public"
     },
     {
       "isRlsEnabled": false,
-      "name": "curso_subcategoria",
+      "name": "CursoSubcategoria",
       "entityType": "tables",
       "schema": "public"
     },
     {
       "isRlsEnabled": false,
-      "name": "leccion",
+      "name": "Leccion",
       "entityType": "tables",
       "schema": "public"
     },
     {
       "isRlsEnabled": false,
-      "name": "maestro",
+      "name": "Maestro",
       "entityType": "tables",
       "schema": "public"
     },
     {
       "isRlsEnabled": false,
-      "name": "matricula",
+      "name": "Matricula",
       "entityType": "tables",
       "schema": "public"
     },
     {
       "isRlsEnabled": false,
-      "name": "metodo_pago",
+      "name": "MetodoPago",
       "entityType": "tables",
       "schema": "public"
     },
     {
       "isRlsEnabled": false,
-      "name": "pago",
+      "name": "Pago",
       "entityType": "tables",
       "schema": "public"
     },
     {
       "isRlsEnabled": false,
-      "name": "resena",
+      "name": "Resena",
       "entityType": "tables",
       "schema": "public"
     },
     {
       "isRlsEnabled": false,
-      "name": "usuario",
+      "name": "Usuario",
       "entityType": "tables",
       "schema": "public"
     },
@@ -151,7 +151,7 @@
       "name": "id",
       "entityType": "columns",
       "schema": "public",
-      "table": "curso"
+      "table": "Curso"
     },
     {
       "type": "timestamp with time zone",
@@ -164,7 +164,7 @@
       "name": "creado",
       "entityType": "columns",
       "schema": "public",
-      "table": "curso"
+      "table": "Curso"
     },
     {
       "type": "timestamp with time zone",
@@ -177,7 +177,7 @@
       "name": "modificado",
       "entityType": "columns",
       "schema": "public",
-      "table": "curso"
+      "table": "Curso"
     },
     {
       "type": "timestamp with time zone",
@@ -190,7 +190,7 @@
       "name": "eliminado",
       "entityType": "columns",
       "schema": "public",
-      "table": "curso"
+      "table": "Curso"
     },
     {
       "type": "text",
@@ -203,7 +203,7 @@
       "name": "slug",
       "entityType": "columns",
       "schema": "public",
-      "table": "curso"
+      "table": "Curso"
     },
     {
       "type": "text",
@@ -216,7 +216,7 @@
       "name": "titulo",
       "entityType": "columns",
       "schema": "public",
-      "table": "curso"
+      "table": "Curso"
     },
     {
       "type": "text",
@@ -229,7 +229,7 @@
       "name": "descripcion",
       "entityType": "columns",
       "schema": "public",
-      "table": "curso"
+      "table": "Curso"
     },
     {
       "type": "text",
@@ -242,7 +242,7 @@
       "name": "descripcionCorta",
       "entityType": "columns",
       "schema": "public",
-      "table": "curso"
+      "table": "Curso"
     },
     {
       "type": "text",
@@ -255,7 +255,7 @@
       "name": "imagenPortadaUrl",
       "entityType": "columns",
       "schema": "public",
-      "table": "curso"
+      "table": "Curso"
     },
     {
       "type": "integer",
@@ -268,7 +268,7 @@
       "name": "precioCentavos",
       "entityType": "columns",
       "schema": "public",
-      "table": "curso"
+      "table": "Curso"
     },
     {
       "type": "integer",
@@ -281,7 +281,7 @@
       "name": "precioActualCentavos",
       "entityType": "columns",
       "schema": "public",
-      "table": "curso"
+      "table": "Curso"
     },
     {
       "type": "text",
@@ -294,7 +294,7 @@
       "name": "moneda",
       "entityType": "columns",
       "schema": "public",
-      "table": "curso"
+      "table": "Curso"
     },
     {
       "type": "boolean",
@@ -307,7 +307,7 @@
       "name": "publicado",
       "entityType": "columns",
       "schema": "public",
-      "table": "curso"
+      "table": "Curso"
     },
     {
       "type": "numeric(2,1)",
@@ -320,7 +320,7 @@
       "name": "calificacion",
       "entityType": "columns",
       "schema": "public",
-      "table": "curso"
+      "table": "Curso"
     },
     {
       "type": "integer",
@@ -333,7 +333,7 @@
       "name": "numeroResenas",
       "entityType": "columns",
       "schema": "public",
-      "table": "curso"
+      "table": "Curso"
     },
     {
       "type": "integer",
@@ -346,7 +346,7 @@
       "name": "numeroEstudiantes",
       "entityType": "columns",
       "schema": "public",
-      "table": "curso"
+      "table": "Curso"
     },
     {
       "type": "integer",
@@ -359,7 +359,7 @@
       "name": "duracionMinutos",
       "entityType": "columns",
       "schema": "public",
-      "table": "curso"
+      "table": "Curso"
     },
     {
       "type": "nivel_curso",
@@ -372,7 +372,7 @@
       "name": "nivel",
       "entityType": "columns",
       "schema": "public",
-      "table": "curso"
+      "table": "Curso"
     },
     {
       "type": "text",
@@ -385,7 +385,7 @@
       "name": "idioma",
       "entityType": "columns",
       "schema": "public",
-      "table": "curso"
+      "table": "Curso"
     },
     {
       "type": "uuid",
@@ -398,7 +398,7 @@
       "name": "maestroId",
       "entityType": "columns",
       "schema": "public",
-      "table": "curso"
+      "table": "Curso"
     },
     {
       "type": "uuid",
@@ -411,7 +411,7 @@
       "name": "cursoSubcategoriaId",
       "entityType": "columns",
       "schema": "public",
-      "table": "curso"
+      "table": "Curso"
     },
     {
       "type": "uuid",
@@ -424,7 +424,7 @@
       "name": "id",
       "entityType": "columns",
       "schema": "public",
-      "table": "curso_categoria"
+      "table": "CursoCategoria"
     },
     {
       "type": "timestamp with time zone",
@@ -437,7 +437,7 @@
       "name": "creado",
       "entityType": "columns",
       "schema": "public",
-      "table": "curso_categoria"
+      "table": "CursoCategoria"
     },
     {
       "type": "timestamp with time zone",
@@ -450,7 +450,7 @@
       "name": "modificado",
       "entityType": "columns",
       "schema": "public",
-      "table": "curso_categoria"
+      "table": "CursoCategoria"
     },
     {
       "type": "timestamp with time zone",
@@ -463,7 +463,7 @@
       "name": "eliminado",
       "entityType": "columns",
       "schema": "public",
-      "table": "curso_categoria"
+      "table": "CursoCategoria"
     },
     {
       "type": "text",
@@ -476,7 +476,7 @@
       "name": "nombre",
       "entityType": "columns",
       "schema": "public",
-      "table": "curso_categoria"
+      "table": "CursoCategoria"
     },
     {
       "type": "text",
@@ -489,7 +489,7 @@
       "name": "slug",
       "entityType": "columns",
       "schema": "public",
-      "table": "curso_categoria"
+      "table": "CursoCategoria"
     },
     {
       "type": "text",
@@ -502,7 +502,7 @@
       "name": "descripcion",
       "entityType": "columns",
       "schema": "public",
-      "table": "curso_categoria"
+      "table": "CursoCategoria"
     },
     {
       "type": "text",
@@ -515,7 +515,7 @@
       "name": "iconoUrl",
       "entityType": "columns",
       "schema": "public",
-      "table": "curso_categoria"
+      "table": "CursoCategoria"
     },
     {
       "type": "integer",
@@ -528,7 +528,7 @@
       "name": "orden",
       "entityType": "columns",
       "schema": "public",
-      "table": "curso_categoria"
+      "table": "CursoCategoria"
     },
     {
       "type": "uuid",
@@ -541,7 +541,7 @@
       "name": "id",
       "entityType": "columns",
       "schema": "public",
-      "table": "curso_subcategoria"
+      "table": "CursoSubcategoria"
     },
     {
       "type": "timestamp with time zone",
@@ -554,7 +554,7 @@
       "name": "creado",
       "entityType": "columns",
       "schema": "public",
-      "table": "curso_subcategoria"
+      "table": "CursoSubcategoria"
     },
     {
       "type": "timestamp with time zone",
@@ -567,7 +567,7 @@
       "name": "modificado",
       "entityType": "columns",
       "schema": "public",
-      "table": "curso_subcategoria"
+      "table": "CursoSubcategoria"
     },
     {
       "type": "timestamp with time zone",
@@ -580,7 +580,7 @@
       "name": "eliminado",
       "entityType": "columns",
       "schema": "public",
-      "table": "curso_subcategoria"
+      "table": "CursoSubcategoria"
     },
     {
       "type": "text",
@@ -593,7 +593,7 @@
       "name": "nombre",
       "entityType": "columns",
       "schema": "public",
-      "table": "curso_subcategoria"
+      "table": "CursoSubcategoria"
     },
     {
       "type": "text",
@@ -606,7 +606,7 @@
       "name": "slug",
       "entityType": "columns",
       "schema": "public",
-      "table": "curso_subcategoria"
+      "table": "CursoSubcategoria"
     },
     {
       "type": "text",
@@ -619,7 +619,7 @@
       "name": "descripcion",
       "entityType": "columns",
       "schema": "public",
-      "table": "curso_subcategoria"
+      "table": "CursoSubcategoria"
     },
     {
       "type": "uuid",
@@ -632,7 +632,7 @@
       "name": "cursoCategoriaId",
       "entityType": "columns",
       "schema": "public",
-      "table": "curso_subcategoria"
+      "table": "CursoSubcategoria"
     },
     {
       "type": "integer",
@@ -645,7 +645,7 @@
       "name": "orden",
       "entityType": "columns",
       "schema": "public",
-      "table": "curso_subcategoria"
+      "table": "CursoSubcategoria"
     },
     {
       "type": "uuid",
@@ -658,7 +658,7 @@
       "name": "id",
       "entityType": "columns",
       "schema": "public",
-      "table": "leccion"
+      "table": "Leccion"
     },
     {
       "type": "timestamp with time zone",
@@ -671,7 +671,7 @@
       "name": "creado",
       "entityType": "columns",
       "schema": "public",
-      "table": "leccion"
+      "table": "Leccion"
     },
     {
       "type": "timestamp with time zone",
@@ -684,7 +684,7 @@
       "name": "modificado",
       "entityType": "columns",
       "schema": "public",
-      "table": "leccion"
+      "table": "Leccion"
     },
     {
       "type": "timestamp with time zone",
@@ -697,7 +697,7 @@
       "name": "eliminado",
       "entityType": "columns",
       "schema": "public",
-      "table": "leccion"
+      "table": "Leccion"
     },
     {
       "type": "uuid",
@@ -710,7 +710,7 @@
       "name": "idcurso",
       "entityType": "columns",
       "schema": "public",
-      "table": "leccion"
+      "table": "Leccion"
     },
     {
       "type": "text",
@@ -723,7 +723,7 @@
       "name": "titulo",
       "entityType": "columns",
       "schema": "public",
-      "table": "leccion"
+      "table": "Leccion"
     },
     {
       "type": "text",
@@ -736,7 +736,7 @@
       "name": "descripcion",
       "entityType": "columns",
       "schema": "public",
-      "table": "leccion"
+      "table": "Leccion"
     },
     {
       "type": "text",
@@ -749,7 +749,7 @@
       "name": "slug",
       "entityType": "columns",
       "schema": "public",
-      "table": "leccion"
+      "table": "Leccion"
     },
     {
       "type": "integer",
@@ -762,7 +762,7 @@
       "name": "orden",
       "entityType": "columns",
       "schema": "public",
-      "table": "leccion"
+      "table": "Leccion"
     },
     {
       "type": "integer",
@@ -775,7 +775,7 @@
       "name": "duracionSegundos",
       "entityType": "columns",
       "schema": "public",
-      "table": "leccion"
+      "table": "Leccion"
     },
     {
       "type": "text",
@@ -788,7 +788,7 @@
       "name": "videoUrl",
       "entityType": "columns",
       "schema": "public",
-      "table": "leccion"
+      "table": "Leccion"
     },
     {
       "type": "text",
@@ -801,7 +801,7 @@
       "name": "contenidoMarkdown",
       "entityType": "columns",
       "schema": "public",
-      "table": "leccion"
+      "table": "Leccion"
     },
     {
       "type": "tipo_leccion",
@@ -814,7 +814,7 @@
       "name": "tipo",
       "entityType": "columns",
       "schema": "public",
-      "table": "leccion"
+      "table": "Leccion"
     },
     {
       "type": "boolean",
@@ -827,7 +827,7 @@
       "name": "publicado",
       "entityType": "columns",
       "schema": "public",
-      "table": "leccion"
+      "table": "Leccion"
     },
     {
       "type": "boolean",
@@ -840,7 +840,7 @@
       "name": "esPreview",
       "entityType": "columns",
       "schema": "public",
-      "table": "leccion"
+      "table": "Leccion"
     },
     {
       "type": "uuid",
@@ -853,7 +853,7 @@
       "name": "id",
       "entityType": "columns",
       "schema": "public",
-      "table": "maestro"
+      "table": "Maestro"
     },
     {
       "type": "timestamp with time zone",
@@ -866,7 +866,7 @@
       "name": "creado",
       "entityType": "columns",
       "schema": "public",
-      "table": "maestro"
+      "table": "Maestro"
     },
     {
       "type": "timestamp with time zone",
@@ -879,7 +879,7 @@
       "name": "modificado",
       "entityType": "columns",
       "schema": "public",
-      "table": "maestro"
+      "table": "Maestro"
     },
     {
       "type": "timestamp with time zone",
@@ -892,7 +892,7 @@
       "name": "eliminado",
       "entityType": "columns",
       "schema": "public",
-      "table": "maestro"
+      "table": "Maestro"
     },
     {
       "type": "text",
@@ -905,7 +905,7 @@
       "name": "nombre",
       "entityType": "columns",
       "schema": "public",
-      "table": "maestro"
+      "table": "Maestro"
     },
     {
       "type": "text",
@@ -918,7 +918,7 @@
       "name": "apellido",
       "entityType": "columns",
       "schema": "public",
-      "table": "maestro"
+      "table": "Maestro"
     },
     {
       "type": "text",
@@ -931,7 +931,7 @@
       "name": "email",
       "entityType": "columns",
       "schema": "public",
-      "table": "maestro"
+      "table": "Maestro"
     },
     {
       "type": "boolean",
@@ -944,7 +944,7 @@
       "name": "emailVerificado",
       "entityType": "columns",
       "schema": "public",
-      "table": "maestro"
+      "table": "Maestro"
     },
     {
       "type": "text",
@@ -957,7 +957,7 @@
       "name": "passwordHash",
       "entityType": "columns",
       "schema": "public",
-      "table": "maestro"
+      "table": "Maestro"
     },
     {
       "type": "text",
@@ -970,7 +970,7 @@
       "name": "proveedorOAuth",
       "entityType": "columns",
       "schema": "public",
-      "table": "maestro"
+      "table": "Maestro"
     },
     {
       "type": "text",
@@ -983,7 +983,7 @@
       "name": "proveedorOAuthId",
       "entityType": "columns",
       "schema": "public",
-      "table": "maestro"
+      "table": "Maestro"
     },
     {
       "type": "text",
@@ -996,7 +996,7 @@
       "name": "avatarUrl",
       "entityType": "columns",
       "schema": "public",
-      "table": "maestro"
+      "table": "Maestro"
     },
     {
       "type": "text",
@@ -1009,7 +1009,7 @@
       "name": "biografia",
       "entityType": "columns",
       "schema": "public",
-      "table": "maestro"
+      "table": "Maestro"
     },
     {
       "type": "text",
@@ -1022,7 +1022,7 @@
       "name": "especialidad",
       "entityType": "columns",
       "schema": "public",
-      "table": "maestro"
+      "table": "Maestro"
     },
     {
       "type": "boolean",
@@ -1035,7 +1035,7 @@
       "name": "verificado",
       "entityType": "columns",
       "schema": "public",
-      "table": "maestro"
+      "table": "Maestro"
     },
     {
       "type": "estado_maestro",
@@ -1048,7 +1048,7 @@
       "name": "estado",
       "entityType": "columns",
       "schema": "public",
-      "table": "maestro"
+      "table": "Maestro"
     },
     {
       "type": "timestamp with time zone",
@@ -1061,7 +1061,7 @@
       "name": "ultimoLogin",
       "entityType": "columns",
       "schema": "public",
-      "table": "maestro"
+      "table": "Maestro"
     },
     {
       "type": "uuid",
@@ -1074,7 +1074,7 @@
       "name": "id",
       "entityType": "columns",
       "schema": "public",
-      "table": "matricula"
+      "table": "Matricula"
     },
     {
       "type": "timestamp with time zone",
@@ -1087,7 +1087,7 @@
       "name": "creado",
       "entityType": "columns",
       "schema": "public",
-      "table": "matricula"
+      "table": "Matricula"
     },
     {
       "type": "timestamp with time zone",
@@ -1100,7 +1100,7 @@
       "name": "modificado",
       "entityType": "columns",
       "schema": "public",
-      "table": "matricula"
+      "table": "Matricula"
     },
     {
       "type": "timestamp with time zone",
@@ -1113,7 +1113,7 @@
       "name": "eliminado",
       "entityType": "columns",
       "schema": "public",
-      "table": "matricula"
+      "table": "Matricula"
     },
     {
       "type": "uuid",
@@ -1126,7 +1126,7 @@
       "name": "idusuario",
       "entityType": "columns",
       "schema": "public",
-      "table": "matricula"
+      "table": "Matricula"
     },
     {
       "type": "uuid",
@@ -1139,7 +1139,7 @@
       "name": "idcurso",
       "entityType": "columns",
       "schema": "public",
-      "table": "matricula"
+      "table": "Matricula"
     },
     {
       "type": "integer",
@@ -1152,7 +1152,7 @@
       "name": "precioPagadoCentavos",
       "entityType": "columns",
       "schema": "public",
-      "table": "matricula"
+      "table": "Matricula"
     },
     {
       "type": "text",
@@ -1165,7 +1165,7 @@
       "name": "moneda",
       "entityType": "columns",
       "schema": "public",
-      "table": "matricula"
+      "table": "Matricula"
     },
     {
       "type": "numeric(5,2)",
@@ -1178,7 +1178,7 @@
       "name": "progreso",
       "entityType": "columns",
       "schema": "public",
-      "table": "matricula"
+      "table": "Matricula"
     },
     {
       "type": "boolean",
@@ -1191,7 +1191,7 @@
       "name": "completado",
       "entityType": "columns",
       "schema": "public",
-      "table": "matricula"
+      "table": "Matricula"
     },
     {
       "type": "timestamp with time zone",
@@ -1204,7 +1204,7 @@
       "name": "fechaCompletado",
       "entityType": "columns",
       "schema": "public",
-      "table": "matricula"
+      "table": "Matricula"
     },
     {
       "type": "text",
@@ -1217,7 +1217,7 @@
       "name": "certificadoUrl",
       "entityType": "columns",
       "schema": "public",
-      "table": "matricula"
+      "table": "Matricula"
     },
     {
       "type": "estado_matricula",
@@ -1230,7 +1230,7 @@
       "name": "estado",
       "entityType": "columns",
       "schema": "public",
-      "table": "matricula"
+      "table": "Matricula"
     },
     {
       "type": "uuid",
@@ -1243,7 +1243,7 @@
       "name": "id",
       "entityType": "columns",
       "schema": "public",
-      "table": "metodo_pago"
+      "table": "MetodoPago"
     },
     {
       "type": "timestamp with time zone",
@@ -1256,7 +1256,7 @@
       "name": "creado",
       "entityType": "columns",
       "schema": "public",
-      "table": "metodo_pago"
+      "table": "MetodoPago"
     },
     {
       "type": "timestamp with time zone",
@@ -1269,7 +1269,7 @@
       "name": "modificado",
       "entityType": "columns",
       "schema": "public",
-      "table": "metodo_pago"
+      "table": "MetodoPago"
     },
     {
       "type": "timestamp with time zone",
@@ -1282,7 +1282,7 @@
       "name": "eliminado",
       "entityType": "columns",
       "schema": "public",
-      "table": "metodo_pago"
+      "table": "MetodoPago"
     },
     {
       "type": "uuid",
@@ -1295,7 +1295,7 @@
       "name": "idusuario",
       "entityType": "columns",
       "schema": "public",
-      "table": "metodo_pago"
+      "table": "MetodoPago"
     },
     {
       "type": "tipo_metodo_pago",
@@ -1308,7 +1308,7 @@
       "name": "tipo",
       "entityType": "columns",
       "schema": "public",
-      "table": "metodo_pago"
+      "table": "MetodoPago"
     },
     {
       "type": "varchar",
@@ -1321,7 +1321,7 @@
       "name": "pasarela",
       "entityType": "columns",
       "schema": "public",
-      "table": "metodo_pago"
+      "table": "MetodoPago"
     },
     {
       "type": "text",
@@ -1334,7 +1334,7 @@
       "name": "pasarelaMetodoId",
       "entityType": "columns",
       "schema": "public",
-      "table": "metodo_pago"
+      "table": "MetodoPago"
     },
     {
       "type": "text",
@@ -1347,7 +1347,7 @@
       "name": "ultimos4",
       "entityType": "columns",
       "schema": "public",
-      "table": "metodo_pago"
+      "table": "MetodoPago"
     },
     {
       "type": "varchar",
@@ -1360,7 +1360,7 @@
       "name": "marca",
       "entityType": "columns",
       "schema": "public",
-      "table": "metodo_pago"
+      "table": "MetodoPago"
     },
     {
       "type": "smallint",
@@ -1373,7 +1373,7 @@
       "name": "expiraMes",
       "entityType": "columns",
       "schema": "public",
-      "table": "metodo_pago"
+      "table": "MetodoPago"
     },
     {
       "type": "smallint",
@@ -1386,7 +1386,7 @@
       "name": "expiraAnio",
       "entityType": "columns",
       "schema": "public",
-      "table": "metodo_pago"
+      "table": "MetodoPago"
     },
     {
       "type": "text",
@@ -1399,7 +1399,7 @@
       "name": "alias",
       "entityType": "columns",
       "schema": "public",
-      "table": "metodo_pago"
+      "table": "MetodoPago"
     },
     {
       "type": "boolean",
@@ -1412,7 +1412,7 @@
       "name": "esDefault",
       "entityType": "columns",
       "schema": "public",
-      "table": "metodo_pago"
+      "table": "MetodoPago"
     },
     {
       "type": "uuid",
@@ -1425,7 +1425,7 @@
       "name": "id",
       "entityType": "columns",
       "schema": "public",
-      "table": "pago"
+      "table": "Pago"
     },
     {
       "type": "timestamp with time zone",
@@ -1438,7 +1438,7 @@
       "name": "creado",
       "entityType": "columns",
       "schema": "public",
-      "table": "pago"
+      "table": "Pago"
     },
     {
       "type": "timestamp with time zone",
@@ -1451,7 +1451,7 @@
       "name": "modificado",
       "entityType": "columns",
       "schema": "public",
-      "table": "pago"
+      "table": "Pago"
     },
     {
       "type": "timestamp with time zone",
@@ -1464,7 +1464,7 @@
       "name": "eliminado",
       "entityType": "columns",
       "schema": "public",
-      "table": "pago"
+      "table": "Pago"
     },
     {
       "type": "uuid",
@@ -1477,7 +1477,7 @@
       "name": "idusuario",
       "entityType": "columns",
       "schema": "public",
-      "table": "pago"
+      "table": "Pago"
     },
     {
       "type": "uuid",
@@ -1490,7 +1490,7 @@
       "name": "idcurso",
       "entityType": "columns",
       "schema": "public",
-      "table": "pago"
+      "table": "Pago"
     },
     {
       "type": "uuid",
@@ -1503,7 +1503,7 @@
       "name": "idmatricula",
       "entityType": "columns",
       "schema": "public",
-      "table": "pago"
+      "table": "Pago"
     },
     {
       "type": "integer",
@@ -1516,7 +1516,7 @@
       "name": "montoCentavos",
       "entityType": "columns",
       "schema": "public",
-      "table": "pago"
+      "table": "Pago"
     },
     {
       "type": "text",
@@ -1529,7 +1529,7 @@
       "name": "moneda",
       "entityType": "columns",
       "schema": "public",
-      "table": "pago"
+      "table": "Pago"
     },
     {
       "type": "estado_pago",
@@ -1542,7 +1542,7 @@
       "name": "estado",
       "entityType": "columns",
       "schema": "public",
-      "table": "pago"
+      "table": "Pago"
     },
     {
       "type": "varchar",
@@ -1555,7 +1555,7 @@
       "name": "pasarela",
       "entityType": "columns",
       "schema": "public",
-      "table": "pago"
+      "table": "Pago"
     },
     {
       "type": "text",
@@ -1568,7 +1568,7 @@
       "name": "pasarelaPagoId",
       "entityType": "columns",
       "schema": "public",
-      "table": "pago"
+      "table": "Pago"
     },
     {
       "type": "tipo_pago",
@@ -1581,7 +1581,7 @@
       "name": "tipo",
       "entityType": "columns",
       "schema": "public",
-      "table": "pago"
+      "table": "Pago"
     },
     {
       "type": "uuid",
@@ -1594,7 +1594,7 @@
       "name": "id",
       "entityType": "columns",
       "schema": "public",
-      "table": "resena"
+      "table": "Resena"
     },
     {
       "type": "timestamp with time zone",
@@ -1607,7 +1607,7 @@
       "name": "creado",
       "entityType": "columns",
       "schema": "public",
-      "table": "resena"
+      "table": "Resena"
     },
     {
       "type": "timestamp with time zone",
@@ -1620,7 +1620,7 @@
       "name": "modificado",
       "entityType": "columns",
       "schema": "public",
-      "table": "resena"
+      "table": "Resena"
     },
     {
       "type": "timestamp with time zone",
@@ -1633,7 +1633,7 @@
       "name": "eliminado",
       "entityType": "columns",
       "schema": "public",
-      "table": "resena"
+      "table": "Resena"
     },
     {
       "type": "uuid",
@@ -1646,7 +1646,7 @@
       "name": "idusuario",
       "entityType": "columns",
       "schema": "public",
-      "table": "resena"
+      "table": "Resena"
     },
     {
       "type": "uuid",
@@ -1659,7 +1659,7 @@
       "name": "idcurso",
       "entityType": "columns",
       "schema": "public",
-      "table": "resena"
+      "table": "Resena"
     },
     {
       "type": "integer",
@@ -1672,7 +1672,7 @@
       "name": "calificacion",
       "entityType": "columns",
       "schema": "public",
-      "table": "resena"
+      "table": "Resena"
     },
     {
       "type": "text",
@@ -1685,7 +1685,7 @@
       "name": "comentario",
       "entityType": "columns",
       "schema": "public",
-      "table": "resena"
+      "table": "Resena"
     },
     {
       "type": "boolean",
@@ -1698,7 +1698,7 @@
       "name": "aprobado",
       "entityType": "columns",
       "schema": "public",
-      "table": "resena"
+      "table": "Resena"
     },
     {
       "type": "uuid",
@@ -1711,7 +1711,7 @@
       "name": "id",
       "entityType": "columns",
       "schema": "public",
-      "table": "usuario"
+      "table": "Usuario"
     },
     {
       "type": "timestamp with time zone",
@@ -1724,7 +1724,7 @@
       "name": "creado",
       "entityType": "columns",
       "schema": "public",
-      "table": "usuario"
+      "table": "Usuario"
     },
     {
       "type": "timestamp with time zone",
@@ -1737,7 +1737,7 @@
       "name": "modificado",
       "entityType": "columns",
       "schema": "public",
-      "table": "usuario"
+      "table": "Usuario"
     },
     {
       "type": "timestamp with time zone",
@@ -1750,7 +1750,7 @@
       "name": "eliminado",
       "entityType": "columns",
       "schema": "public",
-      "table": "usuario"
+      "table": "Usuario"
     },
     {
       "type": "text",
@@ -1763,7 +1763,7 @@
       "name": "nombre",
       "entityType": "columns",
       "schema": "public",
-      "table": "usuario"
+      "table": "Usuario"
     },
     {
       "type": "text",
@@ -1776,7 +1776,7 @@
       "name": "apellido",
       "entityType": "columns",
       "schema": "public",
-      "table": "usuario"
+      "table": "Usuario"
     },
     {
       "type": "text",
@@ -1789,7 +1789,7 @@
       "name": "email",
       "entityType": "columns",
       "schema": "public",
-      "table": "usuario"
+      "table": "Usuario"
     },
     {
       "type": "boolean",
@@ -1802,7 +1802,7 @@
       "name": "emailVerificado",
       "entityType": "columns",
       "schema": "public",
-      "table": "usuario"
+      "table": "Usuario"
     },
     {
       "type": "text",
@@ -1815,7 +1815,7 @@
       "name": "passwordHash",
       "entityType": "columns",
       "schema": "public",
-      "table": "usuario"
+      "table": "Usuario"
     },
     {
       "type": "text",
@@ -1828,7 +1828,7 @@
       "name": "proveedorOAuth",
       "entityType": "columns",
       "schema": "public",
-      "table": "usuario"
+      "table": "Usuario"
     },
     {
       "type": "text",
@@ -1841,7 +1841,7 @@
       "name": "proveedorOAuthId",
       "entityType": "columns",
       "schema": "public",
-      "table": "usuario"
+      "table": "Usuario"
     },
     {
       "type": "text",
@@ -1854,7 +1854,7 @@
       "name": "avatarUrl",
       "entityType": "columns",
       "schema": "public",
-      "table": "usuario"
+      "table": "Usuario"
     },
     {
       "type": "text",
@@ -1867,7 +1867,7 @@
       "name": "biografia",
       "entityType": "columns",
       "schema": "public",
-      "table": "usuario"
+      "table": "Usuario"
     },
     {
       "type": "uuid",
@@ -1880,7 +1880,7 @@
       "name": "metodoPagoDefaultId",
       "entityType": "columns",
       "schema": "public",
-      "table": "usuario"
+      "table": "Usuario"
     },
     {
       "type": "timestamp with time zone",
@@ -1893,7 +1893,7 @@
       "name": "ultimoLogin",
       "entityType": "columns",
       "schema": "public",
-      "table": "usuario"
+      "table": "Usuario"
     },
     {
       "nameExplicit": true,
@@ -1914,7 +1914,7 @@
       "name": "curso_slug_unico_activo",
       "entityType": "indexes",
       "schema": "public",
-      "table": "curso"
+      "table": "Curso"
     },
     {
       "nameExplicit": true,
@@ -1942,7 +1942,7 @@
       "name": "curso_publicado_creado_idx",
       "entityType": "indexes",
       "schema": "public",
-      "table": "curso"
+      "table": "Curso"
     },
     {
       "nameExplicit": true,
@@ -1963,7 +1963,7 @@
       "name": "curso_maestro_idx",
       "entityType": "indexes",
       "schema": "public",
-      "table": "curso"
+      "table": "Curso"
     },
     {
       "nameExplicit": true,
@@ -1984,7 +1984,7 @@
       "name": "curso_subcategoria_idx",
       "entityType": "indexes",
       "schema": "public",
-      "table": "curso"
+      "table": "Curso"
     },
     {
       "nameExplicit": true,
@@ -2005,7 +2005,7 @@
       "name": "curso_categoria_slug_unico_activo",
       "entityType": "indexes",
       "schema": "public",
-      "table": "curso_categoria"
+      "table": "CursoCategoria"
     },
     {
       "nameExplicit": true,
@@ -2026,7 +2026,7 @@
       "name": "curso_categoria_orden_idx",
       "entityType": "indexes",
       "schema": "public",
-      "table": "curso_categoria"
+      "table": "CursoCategoria"
     },
     {
       "nameExplicit": true,
@@ -2054,7 +2054,7 @@
       "name": "curso_subcategoria_slug_categoria_unico",
       "entityType": "indexes",
       "schema": "public",
-      "table": "curso_subcategoria"
+      "table": "CursoSubcategoria"
     },
     {
       "nameExplicit": true,
@@ -2075,7 +2075,7 @@
       "name": "curso_subcategoria_categoria_idx",
       "entityType": "indexes",
       "schema": "public",
-      "table": "curso_subcategoria"
+      "table": "CursoSubcategoria"
     },
     {
       "nameExplicit": true,
@@ -2103,7 +2103,7 @@
       "name": "leccion_curso_orden_unico",
       "entityType": "indexes",
       "schema": "public",
-      "table": "leccion"
+      "table": "Leccion"
     },
     {
       "nameExplicit": true,
@@ -2131,7 +2131,7 @@
       "name": "leccion_curso_slug_unico",
       "entityType": "indexes",
       "schema": "public",
-      "table": "leccion"
+      "table": "Leccion"
     },
     {
       "nameExplicit": true,
@@ -2159,7 +2159,7 @@
       "name": "leccion_curso_publicado_idx",
       "entityType": "indexes",
       "schema": "public",
-      "table": "leccion"
+      "table": "Leccion"
     },
     {
       "nameExplicit": true,
@@ -2180,7 +2180,7 @@
       "name": "maestro_email_unico_activo",
       "entityType": "indexes",
       "schema": "public",
-      "table": "maestro"
+      "table": "Maestro"
     },
     {
       "nameExplicit": true,
@@ -2208,7 +2208,7 @@
       "name": "maestro_proveedor_oauth_unico",
       "entityType": "indexes",
       "schema": "public",
-      "table": "maestro"
+      "table": "Maestro"
     },
     {
       "nameExplicit": true,
@@ -2229,7 +2229,7 @@
       "name": "maestro_estado_idx",
       "entityType": "indexes",
       "schema": "public",
-      "table": "maestro"
+      "table": "Maestro"
     },
     {
       "nameExplicit": true,
@@ -2257,7 +2257,7 @@
       "name": "matricula_usuario_curso_unico",
       "entityType": "indexes",
       "schema": "public",
-      "table": "matricula"
+      "table": "Matricula"
     },
     {
       "nameExplicit": true,
@@ -2278,7 +2278,7 @@
       "name": "matricula_usuario_idx",
       "entityType": "indexes",
       "schema": "public",
-      "table": "matricula"
+      "table": "Matricula"
     },
     {
       "nameExplicit": true,
@@ -2299,7 +2299,7 @@
       "name": "matricula_curso_idx",
       "entityType": "indexes",
       "schema": "public",
-      "table": "matricula"
+      "table": "Matricula"
     },
     {
       "nameExplicit": true,
@@ -2320,7 +2320,7 @@
       "name": "matricula_estado_idx",
       "entityType": "indexes",
       "schema": "public",
-      "table": "matricula"
+      "table": "Matricula"
     },
     {
       "nameExplicit": true,
@@ -2341,7 +2341,7 @@
       "name": "metodo_pago_default_unico_por_usuario",
       "entityType": "indexes",
       "schema": "public",
-      "table": "metodo_pago"
+      "table": "MetodoPago"
     },
     {
       "nameExplicit": true,
@@ -2362,7 +2362,7 @@
       "name": "metodo_pago_usuario_idx",
       "entityType": "indexes",
       "schema": "public",
-      "table": "metodo_pago"
+      "table": "MetodoPago"
     },
     {
       "nameExplicit": true,
@@ -2390,7 +2390,7 @@
       "name": "pago_usuario_creado_idx",
       "entityType": "indexes",
       "schema": "public",
-      "table": "pago"
+      "table": "Pago"
     },
     {
       "nameExplicit": true,
@@ -2411,7 +2411,7 @@
       "name": "pago_curso_idx",
       "entityType": "indexes",
       "schema": "public",
-      "table": "pago"
+      "table": "Pago"
     },
     {
       "nameExplicit": true,
@@ -2432,7 +2432,7 @@
       "name": "pago_estado_idx",
       "entityType": "indexes",
       "schema": "public",
-      "table": "pago"
+      "table": "Pago"
     },
     {
       "nameExplicit": true,
@@ -2453,7 +2453,7 @@
       "name": "pago_pasarela_pago_id_idx",
       "entityType": "indexes",
       "schema": "public",
-      "table": "pago"
+      "table": "Pago"
     },
     {
       "nameExplicit": true,
@@ -2481,7 +2481,7 @@
       "name": "resena_usuario_curso_unico",
       "entityType": "indexes",
       "schema": "public",
-      "table": "resena"
+      "table": "Resena"
     },
     {
       "nameExplicit": true,
@@ -2502,7 +2502,7 @@
       "name": "resena_curso_idx",
       "entityType": "indexes",
       "schema": "public",
-      "table": "resena"
+      "table": "Resena"
     },
     {
       "nameExplicit": true,
@@ -2523,7 +2523,7 @@
       "name": "usuario_email_unico_activo",
       "entityType": "indexes",
       "schema": "public",
-      "table": "usuario"
+      "table": "Usuario"
     },
     {
       "nameExplicit": true,
@@ -2551,7 +2551,7 @@
       "name": "usuario_proveedor_oauth_unico",
       "entityType": "indexes",
       "schema": "public",
-      "table": "usuario"
+      "table": "Usuario"
     },
     {
       "nameExplicit": true,
@@ -2572,7 +2572,7 @@
       "name": "usuario_ultimo_login_idx",
       "entityType": "indexes",
       "schema": "public",
-      "table": "usuario"
+      "table": "Usuario"
     },
     {
       "nameExplicit": false,
@@ -2580,16 +2580,16 @@
         "maestroId"
       ],
       "schemaTo": "public",
-      "tableTo": "maestro",
+      "tableTo": "Maestro",
       "columnsTo": [
         "id"
       ],
       "onUpdate": "NO ACTION",
       "onDelete": "RESTRICT",
-      "name": "curso_maestroId_maestro_id_fkey",
+      "name": "Curso_maestroId_Maestro_id_fkey",
       "entityType": "fks",
       "schema": "public",
-      "table": "curso"
+      "table": "Curso"
     },
     {
       "nameExplicit": false,
@@ -2597,16 +2597,16 @@
         "cursoSubcategoriaId"
       ],
       "schemaTo": "public",
-      "tableTo": "curso_subcategoria",
+      "tableTo": "CursoSubcategoria",
       "columnsTo": [
         "id"
       ],
       "onUpdate": "NO ACTION",
       "onDelete": "RESTRICT",
-      "name": "curso_cursoSubcategoriaId_curso_subcategoria_id_fkey",
+      "name": "Curso_cursoSubcategoriaId_CursoSubcategoria_id_fkey",
       "entityType": "fks",
       "schema": "public",
-      "table": "curso"
+      "table": "Curso"
     },
     {
       "nameExplicit": false,
@@ -2614,16 +2614,16 @@
         "cursoCategoriaId"
       ],
       "schemaTo": "public",
-      "tableTo": "curso_categoria",
+      "tableTo": "CursoCategoria",
       "columnsTo": [
         "id"
       ],
       "onUpdate": "NO ACTION",
       "onDelete": "RESTRICT",
-      "name": "curso_subcategoria_cursoCategoriaId_curso_categoria_id_fkey",
+      "name": "CursoSubcategoria_cursoCategoriaId_CursoCategoria_id_fkey",
       "entityType": "fks",
       "schema": "public",
-      "table": "curso_subcategoria"
+      "table": "CursoSubcategoria"
     },
     {
       "nameExplicit": false,
@@ -2631,16 +2631,16 @@
         "idcurso"
       ],
       "schemaTo": "public",
-      "tableTo": "curso",
+      "tableTo": "Curso",
       "columnsTo": [
         "id"
       ],
       "onUpdate": "NO ACTION",
       "onDelete": "CASCADE",
-      "name": "leccion_idcurso_curso_id_fkey",
+      "name": "Leccion_idcurso_Curso_id_fkey",
       "entityType": "fks",
       "schema": "public",
-      "table": "leccion"
+      "table": "Leccion"
     },
     {
       "nameExplicit": false,
@@ -2648,16 +2648,16 @@
         "idusuario"
       ],
       "schemaTo": "public",
-      "tableTo": "usuario",
+      "tableTo": "Usuario",
       "columnsTo": [
         "id"
       ],
       "onUpdate": "NO ACTION",
       "onDelete": "CASCADE",
-      "name": "matricula_idusuario_usuario_id_fkey",
+      "name": "Matricula_idusuario_Usuario_id_fkey",
       "entityType": "fks",
       "schema": "public",
-      "table": "matricula"
+      "table": "Matricula"
     },
     {
       "nameExplicit": false,
@@ -2665,16 +2665,16 @@
         "idcurso"
       ],
       "schemaTo": "public",
-      "tableTo": "curso",
+      "tableTo": "Curso",
       "columnsTo": [
         "id"
       ],
       "onUpdate": "NO ACTION",
       "onDelete": "RESTRICT",
-      "name": "matricula_idcurso_curso_id_fkey",
+      "name": "Matricula_idcurso_Curso_id_fkey",
       "entityType": "fks",
       "schema": "public",
-      "table": "matricula"
+      "table": "Matricula"
     },
     {
       "nameExplicit": false,
@@ -2682,16 +2682,16 @@
         "idusuario"
       ],
       "schemaTo": "public",
-      "tableTo": "usuario",
+      "tableTo": "Usuario",
       "columnsTo": [
         "id"
       ],
       "onUpdate": "NO ACTION",
       "onDelete": "CASCADE",
-      "name": "metodo_pago_idusuario_usuario_id_fkey",
+      "name": "MetodoPago_idusuario_Usuario_id_fkey",
       "entityType": "fks",
       "schema": "public",
-      "table": "metodo_pago"
+      "table": "MetodoPago"
     },
     {
       "nameExplicit": false,
@@ -2699,16 +2699,16 @@
         "idusuario"
       ],
       "schemaTo": "public",
-      "tableTo": "usuario",
+      "tableTo": "Usuario",
       "columnsTo": [
         "id"
       ],
       "onUpdate": "NO ACTION",
       "onDelete": "RESTRICT",
-      "name": "pago_idusuario_usuario_id_fkey",
+      "name": "Pago_idusuario_Usuario_id_fkey",
       "entityType": "fks",
       "schema": "public",
-      "table": "pago"
+      "table": "Pago"
     },
     {
       "nameExplicit": false,
@@ -2716,16 +2716,16 @@
         "idcurso"
       ],
       "schemaTo": "public",
-      "tableTo": "curso",
+      "tableTo": "Curso",
       "columnsTo": [
         "id"
       ],
       "onUpdate": "NO ACTION",
       "onDelete": "RESTRICT",
-      "name": "pago_idcurso_curso_id_fkey",
+      "name": "Pago_idcurso_Curso_id_fkey",
       "entityType": "fks",
       "schema": "public",
-      "table": "pago"
+      "table": "Pago"
     },
     {
       "nameExplicit": false,
@@ -2733,16 +2733,16 @@
         "idmatricula"
       ],
       "schemaTo": "public",
-      "tableTo": "matricula",
+      "tableTo": "Matricula",
       "columnsTo": [
         "id"
       ],
       "onUpdate": "NO ACTION",
       "onDelete": "SET NULL",
-      "name": "pago_idmatricula_matricula_id_fkey",
+      "name": "Pago_idmatricula_Matricula_id_fkey",
       "entityType": "fks",
       "schema": "public",
-      "table": "pago"
+      "table": "Pago"
     },
     {
       "nameExplicit": false,
@@ -2750,16 +2750,16 @@
         "idusuario"
       ],
       "schemaTo": "public",
-      "tableTo": "usuario",
+      "tableTo": "Usuario",
       "columnsTo": [
         "id"
       ],
       "onUpdate": "NO ACTION",
       "onDelete": "CASCADE",
-      "name": "resena_idusuario_usuario_id_fkey",
+      "name": "Resena_idusuario_Usuario_id_fkey",
       "entityType": "fks",
       "schema": "public",
-      "table": "resena"
+      "table": "Resena"
     },
     {
       "nameExplicit": false,
@@ -2767,25 +2767,25 @@
         "idcurso"
       ],
       "schemaTo": "public",
-      "tableTo": "curso",
+      "tableTo": "Curso",
       "columnsTo": [
         "id"
       ],
       "onUpdate": "NO ACTION",
       "onDelete": "CASCADE",
-      "name": "resena_idcurso_curso_id_fkey",
+      "name": "Resena_idcurso_Curso_id_fkey",
       "entityType": "fks",
       "schema": "public",
-      "table": "resena"
+      "table": "Resena"
     },
     {
       "columns": [
         "id"
       ],
       "nameExplicit": false,
-      "name": "curso_pkey",
+      "name": "Curso_pkey",
       "schema": "public",
-      "table": "curso",
+      "table": "Curso",
       "entityType": "pks"
     },
     {
@@ -2793,9 +2793,9 @@
         "id"
       ],
       "nameExplicit": false,
-      "name": "curso_categoria_pkey",
+      "name": "CursoCategoria_pkey",
       "schema": "public",
-      "table": "curso_categoria",
+      "table": "CursoCategoria",
       "entityType": "pks"
     },
     {
@@ -2803,9 +2803,9 @@
         "id"
       ],
       "nameExplicit": false,
-      "name": "curso_subcategoria_pkey",
+      "name": "CursoSubcategoria_pkey",
       "schema": "public",
-      "table": "curso_subcategoria",
+      "table": "CursoSubcategoria",
       "entityType": "pks"
     },
     {
@@ -2813,9 +2813,9 @@
         "id"
       ],
       "nameExplicit": false,
-      "name": "leccion_pkey",
+      "name": "Leccion_pkey",
       "schema": "public",
-      "table": "leccion",
+      "table": "Leccion",
       "entityType": "pks"
     },
     {
@@ -2823,9 +2823,9 @@
         "id"
       ],
       "nameExplicit": false,
-      "name": "maestro_pkey",
+      "name": "Maestro_pkey",
       "schema": "public",
-      "table": "maestro",
+      "table": "Maestro",
       "entityType": "pks"
     },
     {
@@ -2833,9 +2833,9 @@
         "id"
       ],
       "nameExplicit": false,
-      "name": "matricula_pkey",
+      "name": "Matricula_pkey",
       "schema": "public",
-      "table": "matricula",
+      "table": "Matricula",
       "entityType": "pks"
     },
     {
@@ -2843,9 +2843,9 @@
         "id"
       ],
       "nameExplicit": false,
-      "name": "metodo_pago_pkey",
+      "name": "MetodoPago_pkey",
       "schema": "public",
-      "table": "metodo_pago",
+      "table": "MetodoPago",
       "entityType": "pks"
     },
     {
@@ -2853,9 +2853,9 @@
         "id"
       ],
       "nameExplicit": false,
-      "name": "pago_pkey",
+      "name": "Pago_pkey",
       "schema": "public",
-      "table": "pago",
+      "table": "Pago",
       "entityType": "pks"
     },
     {
@@ -2863,9 +2863,9 @@
         "id"
       ],
       "nameExplicit": false,
-      "name": "resena_pkey",
+      "name": "Resena_pkey",
       "schema": "public",
-      "table": "resena",
+      "table": "Resena",
       "entityType": "pks"
     },
     {
@@ -2873,9 +2873,9 @@
         "id"
       ],
       "nameExplicit": false,
-      "name": "usuario_pkey",
+      "name": "Usuario_pkey",
       "schema": "public",
-      "table": "usuario",
+      "table": "Usuario",
       "entityType": "pks"
     },
     {
@@ -2883,42 +2883,42 @@
       "name": "curso_precio_no_negativo",
       "entityType": "checks",
       "schema": "public",
-      "table": "curso"
+      "table": "Curso"
     },
     {
       "value": "\"calificacion\" >= 0 AND \"calificacion\" <= 5",
       "name": "curso_calificacion_rango",
       "entityType": "checks",
       "schema": "public",
-      "table": "curso"
+      "table": "Curso"
     },
     {
       "value": "\"progreso\" >= 0 AND \"progreso\" <= 100",
       "name": "matricula_progreso_rango",
       "entityType": "checks",
       "schema": "public",
-      "table": "matricula"
+      "table": "Matricula"
     },
     {
       "value": "\"expiraMes\" IS NULL OR (\"expiraMes\" BETWEEN 1 AND 12)",
       "name": "metodo_pago_expira_mes_rango",
       "entityType": "checks",
       "schema": "public",
-      "table": "metodo_pago"
+      "table": "MetodoPago"
     },
     {
       "value": "\"montoCentavos\" >= 0",
       "name": "pago_monto_no_negativo",
       "entityType": "checks",
       "schema": "public",
-      "table": "pago"
+      "table": "Pago"
     },
     {
       "value": "\"calificacion\" BETWEEN 1 AND 5",
       "name": "resena_calificacion_rango",
       "entityType": "checks",
       "schema": "public",
-      "table": "resena"
+      "table": "Resena"
     }
   ],
   "renames": []

@@ -16,11 +16,6 @@ import {
   varchar,
 } from "drizzle-orm/pg-core";
 
-// ─── Enums ──────────────────────────────────────────────────────────────────
-// pgEnum en lugar de varchar: tipado fuerte en TS, validación en DB,
-// y las queries EXPLAIN son más legibles. Si en el futuro hay que añadir
-// un valor, basta con extender el array y generar una nueva migración.
-
 export const nivelCursoEnum = pgEnum("nivel_curso", [
   "principiante",
   "intermedio",
@@ -67,15 +62,7 @@ export const tipoLeccionEnum = pgEnum("tipo_leccion", [
   "proyecto",
 ]);
 
-// Pasarela y marca de tarjeta quedan como varchar porque el ecosistema
-// crece sin control (nuevas pasarelas, redes de tarjetas). En pgEnum
-// añadir un valor requiere migración de tipo ALTER TYPE.
-const PASARELAS_PAGO = [
-  "stripe",
-  "paypal",
-  "mercadopago",
-  "manual",
-] as const;
+const PASARELAS_PAGO = ["stripe", "paypal", "mercadopago", "manual"] as const;
 const MARCAS_TARJETA = [
   "visa",
   "mastercard",
@@ -84,30 +71,12 @@ const MARCAS_TARJETA = [
   "oxxo",
 ] as const;
 
-// ─── Columnas base ──────────────────────────────────────────────────────────
-// Regla del proyecto: TODA tabla lleva id uuid, los tres timestamps de
-// auditoría y un soft-delete via `eliminado`. `modificado` se mantiene
-// al día con un trigger de Postgres (ver migración generada) — así no
-// dependemos de que el código de aplicación se acuerde de actualizarlo.
-
 const baseColumns = {
-  id: uuid()
-    .primaryKey()
-    .defaultRandom(),
-  creado: timestamp({ withTimezone: true, mode: "date" })
-    
-    .defaultNow(),
-  modificado: timestamp({ withTimezone: true, mode: "date" })
-    
-    .defaultNow(),
+  id: uuid().primaryKey().defaultRandom(),
+  creado: timestamp({ withTimezone: true, mode: "date" }).defaultNow(),
+  modificado: timestamp({ withTimezone: true, mode: "date" }).defaultNow(),
   eliminado: timestamp({ withTimezone: true, mode: "date" }),
 };
-
-// ─── usuario ────────────────────────────────────────────────────────────────
-// Estudiantes / compradores. Se mantienen como entidad separada del
-// `maestro` para poder modelar instructores con cuentas propias que
-// quizá no consumen cursos, y para no contaminar la tabla de usuarios
-// con campos específicos de publicación (verificado, especialidad…).
 
 export const usuario = pgTable(
   "Usuario",
@@ -117,23 +86,15 @@ export const usuario = pgTable(
     apellido: text(),
     email: text(),
     emailVerificado: boolean().default(false),
-    // Hash Argon2/scrypt/lo que elijas. Si el usuario llega solo por
-    // OAuth, este campo queda NULL y se usa `proveedorOAuth` en su lugar.
     passwordHash: text(),
-    // Para OAuth (Google, GitHub…). Combinación única por pasarela.
     proveedorOAuth: text(),
     proveedorOAuthId: text(),
     avatarUrl: text(),
     biografia: text(),
-    // Apunta al método de pago marcado como `esDefault` en su tabla.
-    // Queda NULL mientras el usuario no haya guardado una tarjeta.
     metodoPagoDefaultId: uuid(),
     ultimoLogin: timestamp({ withTimezone: true, mode: "date" }),
   },
   (table) => [
-    // Email único solo entre filas activas. Si el usuario es soft-deleted
-    // (eliminado IS NOT NULL) se libera el email y puede registrarse uno
-    // nuevo. Drizzle soporta índices parciales vía `.where()`.
     uniqueIndex("usuario_email_unico_activo")
       .on(table.email)
       .where(sql`${table.eliminado} IS NULL`),
@@ -143,11 +104,6 @@ export const usuario = pgTable(
     index("usuario_ultimo_login_idx").on(table.ultimoLogin),
   ],
 );
-
-// ─── maestro ────────────────────────────────────────────────────────────────
-// Instructor / autor de cursos. Entidad propia con login propio: un
-// maestro no tiene por qué ser un `usuario` que compra cursos, y un
-// usuario no tiene por qué tener permisos para publicar.
 
 export const maestro = pgTable(
   "Maestro",
@@ -163,7 +119,6 @@ export const maestro = pgTable(
     avatarUrl: text(),
     biografia: text(),
     especialidad: text(),
-    // Pasado por el equipo editorial antes de poder publicar cursos.
     verificado: boolean().default(false),
     estado: estadoMaestroEnum().default("pendiente"),
     ultimoLogin: timestamp({ withTimezone: true, mode: "date" }),
@@ -178,12 +133,6 @@ export const maestro = pgTable(
     index("maestro_estado_idx").on(table.estado),
   ],
 );
-
-// ─── curso_categoria ────────────────────────────────────────────────────────
-// Categoría de primer nivel (Ingeniería, Diseño, Datos, Producto…).
-// PascalCase con prefijo `Curso` — el prefijo deja la puerta abierta a
-// otros espacios de clasificación (categorías de instructores, de posts,
-// etc.) sin chocar de nombre.
 
 export const cursoCategoria = pgTable(
   "CursoCategoria",
@@ -203,8 +152,6 @@ export const cursoCategoria = pgTable(
   ],
 );
 
-// ─── curso_subcategoria ─────────────────────────────────────────────────────
-
 export const cursoSubcategoria = pgTable(
   "CursoSubcategoria",
   {
@@ -212,14 +159,12 @@ export const cursoSubcategoria = pgTable(
     nombre: text(),
     slug: text(),
     descripcion: text(),
-    cursoCategoriaId: uuid()
-      
-      .references(() => cursoCategoria.id, { onDelete: "restrict" }),
+    cursoCategoriaId: uuid().references(() => cursoCategoria.id, {
+      onDelete: "restrict",
+    }),
     orden: integer().default(0),
   },
   (table) => [
-    // Slug único dentro de cada categoría. Dos categorías distintas
-    // pueden tener subcategorías con el mismo slug.
     uniqueIndex("curso_subcategoria_slug_categoria_unico")
       .on(table.cursoCategoriaId, table.slug)
       .where(sql`${table.eliminado} IS NULL`),
@@ -227,41 +172,29 @@ export const cursoSubcategoria = pgTable(
   ],
 );
 
-// ─── curso ──────────────────────────────────────────────────────────────────
-// Producto. Lleva campos denormalizados (calificacion, numeroResenas,
-// numeroEstudiantes) que se actualizan con triggers al insertar/modificar
-// resenas y matriculas — evitan un COUNT/AVG en cada query de catálogo.
-
 export const curso = pgTable(
   "Curso",
   {
     ...baseColumns,
-    // El slug va en la URL (/cursos/[slug]), por eso único.
     slug: text(),
     titulo: text(),
     descripcion: text(),
     descripcionCorta: text(),
     imagenPortadaUrl: text(),
-    // Dinero siempre en enteros. Un float pierde centavos al sumar.
     precioCentavos: integer().default(0),
-    // Precio con descuento (opcional). Si es NULL, el vigente es
-    // `precioCentavos`. La UI usa COALESCE(precioActualCentavos, precioCentavos).
     precioActualCentavos: integer(),
     moneda: text().default("MXN"),
     publicado: boolean().default(false),
-    // Promedio denormalizado de resenas. 0.0–5.0 con un decimal.
     calificacion: numeric({ precision: 2, scale: 1 }).default("0.0"),
     numeroResenas: integer().default(0),
     numeroEstudiantes: integer().default(0),
     duracionMinutos: integer().default(0),
     nivel: nivelCursoEnum().default("principiante"),
     idioma: text().default("es"),
-    maestroId: uuid()
-      
-      .references(() => maestro.id, { onDelete: "restrict" }),
-    cursoSubcategoriaId: uuid()
-      
-      .references(() => cursoSubcategoria.id, { onDelete: "restrict" }),
+    maestroId: uuid().references(() => maestro.id, { onDelete: "restrict" }),
+    cursoSubcategoriaId: uuid().references(() => cursoSubcategoria.id, {
+      onDelete: "restrict",
+    }),
   },
   (table) => [
     uniqueIndex("curso_slug_unico_activo")
@@ -281,29 +214,17 @@ export const curso = pgTable(
   ],
 );
 
-// ─── resena ─────────────────────────────────────────────────────────────────
-// Reseña que un usuario deja en un curso. El usuario pidió el campo
-// `idusuario` explícito: respetamos el snake_case exacto para que el
-// nombre de la columna en Postgres coincida con el de la API esperada.
-
 export const resena = pgTable(
   "Resena",
   {
     ...baseColumns,
-    idusuario: uuid()
-      
-      .references(() => usuario.id, { onDelete: "cascade" }),
-    idcurso: uuid()
-      
-      .references(() => curso.id, { onDelete: "cascade" }),
+    idusuario: uuid().references(() => usuario.id, { onDelete: "cascade" }),
+    idcurso: uuid().references(() => curso.id, { onDelete: "cascade" }),
     calificacion: integer(),
     comentario: text(),
-    // Moderación editorial. Las reseñas con aprobado=false no se
-    // cuentan en el promedio ni se muestran públicamente.
     aprobado: boolean().default(true),
   },
   (table) => [
-    // Un usuario solo puede reseñar un curso una vez.
     uniqueIndex("resena_usuario_curso_unico")
       .on(table.idusuario, table.idcurso)
       .where(sql`${table.eliminado} IS NULL`),
@@ -315,22 +236,12 @@ export const resena = pgTable(
   ],
 );
 
-// ─── matricula ──────────────────────────────────────────────────────────────
-// Une un usuario con un curso. Es la pieza que da sentido a la plataforma:
-// sin matrícula no hay "mis cursos", ni progreso, ni certificados.
-// Precio pagado denormalizado: si el curso cambia de precio mañana,
-// las matrículas viejas mantienen el histórico.
-
 export const matricula = pgTable(
   "Matricula",
   {
     ...baseColumns,
-    idusuario: uuid()
-      
-      .references(() => usuario.id, { onDelete: "cascade" }),
-    idcurso: uuid()
-      
-      .references(() => curso.id, { onDelete: "restrict" }),
+    idusuario: uuid().references(() => usuario.id, { onDelete: "cascade" }),
+    idcurso: uuid().references(() => curso.id, { onDelete: "restrict" }),
     precioPagadoCentavos: integer(),
     moneda: text().default("MXN"),
     progreso: numeric({ precision: 5, scale: 2 }).default("0.00"),
@@ -340,8 +251,6 @@ export const matricula = pgTable(
     estado: estadoMatriculaEnum().default("activa"),
   },
   (table) => [
-    // Una sola matrícula activa por (usuario, curso). Borrar y volver
-    // a comprar requiere cancelar la anterior, no duplicar filas.
     uniqueIndex("matricula_usuario_curso_unico")
       .on(table.idusuario, table.idcurso)
       .where(sql`${table.eliminado} IS NULL`),
@@ -355,23 +264,14 @@ export const matricula = pgTable(
   ],
 );
 
-// ─── leccion ────────────────────────────────────────────────────────────────
-// Contenido dentro de un curso. `orden` es la posición secuencial y
-// se mantiene único por curso para que la UI pueda iterar sin ORDER BY
-// inconsistente. `esPreview` permite mostrar la primera lección sin
-// matrícula — el truco clásico de Udemy para captar estudiantes.
 
 export const leccion = pgTable(
   "Leccion",
   {
     ...baseColumns,
-    idcurso: uuid()
-      
-      .references(() => curso.id, { onDelete: "cascade" }),
+    idcurso: uuid().references(() => curso.id, { onDelete: "cascade" }),
     titulo: text(),
     descripcion: text(),
-    // Slug opcional para URLs amigables (/cursos/[slug]/lecciones/[leccionSlug]).
-    // Si es NULL, se accede por id.
     slug: text(),
     orden: integer(),
     duracionSegundos: integer().default(0),
@@ -392,19 +292,11 @@ export const leccion = pgTable(
   ],
 );
 
-// ─── metodo_pago ────────────────────────────────────────────────────────────
-// Métodos de pago guardados del usuario (tarjeta tokenizada, PayPal…).
-// NUNCA almacenamos PAN aquí — solo el `pasarelaMetodoId` que es un
-// token opaco que vive en Stripe/PayPal/etc. Los últimos 4 dígitos y
-// la marca son solo para mostrar en la UI.
-
 export const metodoPago = pgTable(
   "MetodoPago",
   {
     ...baseColumns,
-    idusuario: uuid()
-      
-      .references(() => usuario.id, { onDelete: "cascade" }),
+    idusuario: uuid().references(() => usuario.id, { onDelete: "cascade" }),
     tipo: tipoMetodoPagoEnum(),
     pasarela: varchar({ enum: PASARELAS_PAGO }),
     pasarelaMetodoId: text(),
@@ -416,8 +308,6 @@ export const metodoPago = pgTable(
     esDefault: boolean().default(false),
   },
   (table) => [
-    // Solo un método default por usuario. Partial unique index: ignora
-    // filas que NO son default, y filas soft-deleted.
     uniqueIndex("metodo_pago_default_unico_por_usuario")
       .on(table.idusuario)
       .where(sql`${table.esDefault} = true AND ${table.eliminado} IS NULL`),
@@ -429,19 +319,15 @@ export const metodoPago = pgTable(
   ],
 );
 
-// ─── pago ───────────────────────────────────────────────────────────────────
-// Evento de cobro. Se crea uno por cada transacción (incluso fallida o
-// reembolsada) — es el libro contable. El `idmatricula` se rellena
-// cuando el pago corresponde a una matrícula nueva; queda NULL para
-// pagos que no generen matrícula (renovaciones,礼品…).
-
 export const pago = pgTable(
   "Pago",
   {
     ...baseColumns,
     idusuario: uuid().references(() => usuario.id, { onDelete: "restrict" }),
     idcurso: uuid().references(() => curso.id, { onDelete: "restrict" }),
-    idmatricula: uuid().references(() => matricula.id, { onDelete: "set null" }),
+    idmatricula: uuid().references(() => matricula.id, {
+      onDelete: "set null",
+    }),
     montoCentavos: integer(),
     moneda: text().default("MXN"),
     estado: estadoPagoEnum().default("pendiente"),
@@ -458,23 +344,11 @@ export const pago = pgTable(
   ],
 );
 
-// ─── FK cruzada: usuario.metodoPagoDefaultId → metodoPago.id ────────────────
-// Definida aparte porque cruza dos tablas y Drizzle no permite declararla
-// inline en la columna (sería forward-reference circular). La migración
-// generada la crea como ALTER TABLE.
-
 export const usuarioMetodoPagoFk = foreignKey({
   columns: [usuario.metodoPagoDefaultId],
   foreignColumns: [metodoPago.id],
   name: "usuario_metodo_pago_default_fk",
 }).onDelete("set null");
-
-// ─── Schema export + Relations (Drizzle 1.0-rc V2 API) ─────────────────────
-// `defineRelations` es la API pública de relaciones en Drizzle 1.0-rc;
-// la antigua función `relations()` ahora vive en `_relations` (inestable).
-// Pasamos el schema completo como primer argumento para que `r` (el
-// builder) tenga acceso a TODAS las columnas de TODAS las tablas y
-// podamos cruzar FKs sin colisión de nombres.
 
 export const schema = {
   usuario,
@@ -495,9 +369,6 @@ export const relations = defineRelations(schema, (r) => ({
     matriculas: r.many.matricula(),
     metodosPago: r.many.metodoPago(),
     pagos: r.many.pago(),
-    // FK inversa al método de pago marcado como default. Necesita
-    // alias porque `metodoPago` ya tiene una relación `usuario` (la
-    // del dueño), y sin alias el grafo no sabría cuál usar.
     metodoPagoDefault: r.one.metodoPago({
       from: r.usuario.metodoPagoDefaultId,
       to: r.metodoPago.id,
@@ -579,10 +450,6 @@ export const relations = defineRelations(schema, (r) => ({
     }),
   },
 }));
-
-// ─── Tipos inferidos ────────────────────────────────────────────────────────
-// No los dupliques a mano en types/. Salen del schema con $inferSelect /
-// $inferInsert — son la única fuente de verdad.
 
 export type Usuario = typeof usuario.$inferSelect;
 export type NuevoUsuario = typeof usuario.$inferInsert;
