@@ -46,6 +46,12 @@
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
+  /* Landing page accent — kept because the hero is the only place that
+     uses an editorial blue different from the rest of the site's
+     primary. It still maps to the same oklch value as --primary so
+     it stays consistent at the pixel level. */
+  --color-sky: oklch(0.5 0.134 242.749);
+  --color-sky-ink: oklch(0.977 0.013 236.62);
 }
 
 :root {
@@ -126,5 +132,209 @@
   }
   html {
     @apply font-sans;
+  }
+  /* Landing page: initial state for GSAP-revealed elements.
+     The <noscript> block in HomeLanding and the reduced-motion
+     media query below override this when JS is off or motion
+     is disabled. */
+  .rise,
+  .rise-s {
+    opacity: 0;
+    transform: translateY(28px);
+    will-change: opacity, transform;
+  }
+  .rise-s {
+    transform: translateY(12px);
+  }
+}
+
+@layer components {
+  /* Landing page: serif display headings (Noto Serif) */
+  .display {
+    font-family: var(--font-heading);
+    font-weight: 400;
+    letter-spacing: -0.035em;
+    line-height: 0.92;
+  }
+  .display-it {
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: -0.035em;
+  }
+  /* Landing page: animated underline on hover */
+  .under {
+    position: relative;
+    display: inline-block;
+  }
+  .under::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -3px;
+    height: 1px;
+    background-color: currentColor;
+    transform-origin: right;
+    transform: scaleX(0);
+    transition: transform 400ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .under:hover::after {
+    transform-origin: left;
+    transform: scaleX(1);
+  }
+  /* Landing page: course card with hover background shift */
+  .cell {
+    background-color: var(--background);
+    transition: background-color 320ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .cell:hover {
+    background-color: var(--muted);
+  }
+  /* Landing page: 4-step grid with hairline dividers across breakpoints */
+  .steps-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    border: 1px solid var(--border);
+    background-color: var(--border);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .steps-grid > li {
+    background-color: var(--background);
+    border-top: 1px solid var(--border);
+  }
+  .steps-grid > li:first-child {
+    border-top: none;
+  }
+  @media (min-width: 768px) {
+    .steps-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .steps-grid > li {
+      border-top: none;
+    }
+    .steps-grid > li:nth-child(odd) {
+      border-right: 1px solid var(--border);
+    }
+    .steps-grid > li:nth-child(-n + 2) {
+      border-bottom: 1px solid var(--border);
+    }
+  }
+  @media (min-width: 1024px) {
+    .steps-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+    .steps-grid > li:nth-child(-n + 2) {
+      border-bottom: none;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rise,
+  .rise-s {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   View Transitions (Next.js 16 + React <ViewTransition>)
+
+   Activadas por defecto para toda navegación entre rutas (crossfade sutil).
+   Cuando un <Link href="..." transitionTypes={['nav-forward']}> aparece,
+   el contenido sale hacia la izquierda y entra desde la derecha; con
+   `nav-back` ocurre lo inverso. El navbar y el footer son siblings de
+   {children} dentro del root layout, así que quedan fuera del snapshot
+   y se mantienen estables como ancla visual durante toda la animación.
+
+   Tokens centralizados para que ajustar timing/offset se haga en un sitio.
+   ─────────────────────────────────────────────────────────────────────── */
+:root {
+  --vt-duration-exit: 150ms;
+  --vt-duration-enter: 210ms;
+  --vt-duration-slide: 400ms;
+  --vt-slide-offset: 60px;
+}
+
+/* Keyframes compartidos ──────────────────────────────────────────────────────
+   `vt-fade` va de 0 → 1 en opacidad; aplicado con `reverse` en la cara
+   "vieja" se convierte en 1 → 0 (fade out). Mismo truco en `vt-slide`:
+   el offset vive en una custom property que se sobrescribe por cara. */
+
+@keyframes vt-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes vt-slide {
+  from {
+    translate: var(--vt-slide-offset, 0) 0;
+  }
+  to {
+    translate: 0 0;
+  }
+}
+
+/* Default: crossfade suave, sin movimiento posicional ─────────────────────── */
+
+::view-transition-old(.page-fade) {
+  animation: var(--vt-duration-exit) ease-out both vt-fade reverse;
+}
+::view-transition-new(.page-fade) {
+  animation: var(--vt-duration-enter) ease-in both vt-fade;
+}
+
+/* nav-forward: el contenido viejo sale a la izquierda; el nuevo entra
+   desde la derecha. Asimétrico en timing: la salida es más rápida que
+   la entrada (150ms vs 210ms) para que el contenido viejo no compita
+   por atención con el nuevo. */
+
+::view-transition-old(.slide-out-left) {
+  --vt-slide-offset: -60px;
+  animation:
+    var(--vt-duration-exit) ease-out both vt-fade reverse,
+    var(--vt-duration-slide) ease-in-out both vt-slide reverse;
+}
+::view-transition-new(.slide-in-right) {
+  --vt-slide-offset: 60px;
+  animation:
+    var(--vt-duration-enter) ease-in var(--vt-duration-exit) both vt-fade,
+    var(--vt-duration-slide) ease-in-out var(--vt-duration-exit) both vt-slide;
+}
+
+/* nav-back: simétrico — el viejo sale a la derecha y el nuevo entra
+   desde la izquierda. */
+
+::view-transition-old(.slide-out-right) {
+  --vt-slide-offset: 60px;
+  animation:
+    var(--vt-duration-exit) ease-out both vt-fade reverse,
+    var(--vt-duration-slide) ease-in-out both vt-slide reverse;
+}
+::view-transition-new(.slide-in-left) {
+  --vt-slide-offset: -60px;
+  animation:
+    var(--vt-duration-enter) ease-in var(--vt-duration-exit) both vt-fade,
+    var(--vt-duration-slide) ease-in-out var(--vt-duration-exit) both vt-slide;
+}
+
+/* Accesibilidad: respeta prefers-reduced-motion ─────────────────────────────
+   Ponemos todas las duraciones a 0 para que el cambio sea instantáneo,
+   manteniendo la estructura de la transición (los snapshots siguen
+   generándose) pero sin movimiento perceptible. */
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(*),
+  ::view-transition-new(*),
+  ::view-transition-group(*) {
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
   }
 }

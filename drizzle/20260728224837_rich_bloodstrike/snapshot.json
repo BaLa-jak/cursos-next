@@ -1,0 +1,2925 @@
+{
+  "version": "8",
+  "dialect": "postgres",
+  "id": "aaf1d7fc-a811-488c-95b7-b84d2eab0c56",
+  "prevIds": [
+    "00000000-0000-0000-0000-000000000000"
+  ],
+  "ddl": [
+    {
+      "values": [
+        "activo",
+        "pendiente",
+        "suspendido"
+      ],
+      "name": "estado_maestro",
+      "entityType": "enums",
+      "schema": "public"
+    },
+    {
+      "values": [
+        "activa",
+        "completada",
+        "cancelada",
+        "expirada"
+      ],
+      "name": "estado_matricula",
+      "entityType": "enums",
+      "schema": "public"
+    },
+    {
+      "values": [
+        "pendiente",
+        "completado",
+        "fallido",
+        "reembolsado"
+      ],
+      "name": "estado_pago",
+      "entityType": "enums",
+      "schema": "public"
+    },
+    {
+      "values": [
+        "principiante",
+        "intermedio",
+        "avanzado"
+      ],
+      "name": "nivel_curso",
+      "entityType": "enums",
+      "schema": "public"
+    },
+    {
+      "values": [
+        "video",
+        "texto",
+        "quiz",
+        "proyecto"
+      ],
+      "name": "tipo_leccion",
+      "entityType": "enums",
+      "schema": "public"
+    },
+    {
+      "values": [
+        "tarjeta",
+        "paypal",
+        "transferencia"
+      ],
+      "name": "tipo_metodo_pago",
+      "entityType": "enums",
+      "schema": "public"
+    },
+    {
+      "values": [
+        "tarjeta",
+        "paypal",
+        "transferencia",
+        "oxxo"
+      ],
+      "name": "tipo_pago",
+      "entityType": "enums",
+      "schema": "public"
+    },
+    {
+      "isRlsEnabled": false,
+      "name": "curso",
+      "entityType": "tables",
+      "schema": "public"
+    },
+    {
+      "isRlsEnabled": false,
+      "name": "curso_categoria",
+      "entityType": "tables",
+      "schema": "public"
+    },
+    {
+      "isRlsEnabled": false,
+      "name": "curso_subcategoria",
+      "entityType": "tables",
+      "schema": "public"
+    },
+    {
+      "isRlsEnabled": false,
+      "name": "leccion",
+      "entityType": "tables",
+      "schema": "public"
+    },
+    {
+      "isRlsEnabled": false,
+      "name": "maestro",
+      "entityType": "tables",
+      "schema": "public"
+    },
+    {
+      "isRlsEnabled": false,
+      "name": "matricula",
+      "entityType": "tables",
+      "schema": "public"
+    },
+    {
+      "isRlsEnabled": false,
+      "name": "metodo_pago",
+      "entityType": "tables",
+      "schema": "public"
+    },
+    {
+      "isRlsEnabled": false,
+      "name": "pago",
+      "entityType": "tables",
+      "schema": "public"
+    },
+    {
+      "isRlsEnabled": false,
+      "name": "resena",
+      "entityType": "tables",
+      "schema": "public"
+    },
+    {
+      "isRlsEnabled": false,
+      "name": "usuario",
+      "entityType": "tables",
+      "schema": "public"
+    },
+    {
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "gen_random_uuid()",
+      "generated": null,
+      "identity": null,
+      "name": "id",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "curso"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "name": "creado",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "curso"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "name": "modificado",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "curso"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "eliminado",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "curso"
+    },
+    {
+      "type": "text",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "slug",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "curso"
+    },
+    {
+      "type": "text",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "titulo",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "curso"
+    },
+    {
+      "type": "text",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "descripcion",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "curso"
+    },
+    {
+      "type": "text",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "descripcionCorta",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "curso"
+    },
+    {
+      "type": "text",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "imagenPortadaUrl",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "curso"
+    },
+    {
+      "type": "integer",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": "0",
+      "generated": null,
+      "identity": null,
+      "name": "precioCentavos",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "curso"
+    },
+    {
+      "type": "integer",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "precioActualCentavos",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "curso"
+    },
+    {
+      "type": "text",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": "'MXN'",
+      "generated": null,
+      "identity": null,
+      "name": "moneda",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "curso"
+    },
+    {
+      "type": "boolean",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": "false",
+      "generated": null,
+      "identity": null,
+      "name": "publicado",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "curso"
+    },
+    {
+      "type": "numeric(2,1)",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": "'0.0'",
+      "generated": null,
+      "identity": null,
+      "name": "calificacion",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "curso"
+    },
+    {
+      "type": "integer",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": "0",
+      "generated": null,
+      "identity": null,
+      "name": "numeroResenas",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "curso"
+    },
+    {
+      "type": "integer",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": "0",
+      "generated": null,
+      "identity": null,
+      "name": "numeroEstudiantes",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "curso"
+    },
+    {
+      "type": "integer",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": "0",
+      "generated": null,
+      "identity": null,
+      "name": "duracionMinutos",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "curso"
+    },
+    {
+      "type": "nivel_curso",
+      "typeSchema": "public",
+      "notNull": false,
+      "dimensions": 0,
+      "default": "'principiante'",
+      "generated": null,
+      "identity": null,
+      "name": "nivel",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "curso"
+    },
+    {
+      "type": "text",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": "'es'",
+      "generated": null,
+      "identity": null,
+      "name": "idioma",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "curso"
+    },
+    {
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "maestroId",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "curso"
+    },
+    {
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "cursoSubcategoriaId",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "curso"
+    },
+    {
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "gen_random_uuid()",
+      "generated": null,
+      "identity": null,
+      "name": "id",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "curso_categoria"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "name": "creado",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "curso_categoria"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "name": "modificado",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "curso_categoria"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "eliminado",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "curso_categoria"
+    },
+    {
+      "type": "text",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "nombre",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "curso_categoria"
+    },
+    {
+      "type": "text",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "slug",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "curso_categoria"
+    },
+    {
+      "type": "text",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "descripcion",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "curso_categoria"
+    },
+    {
+      "type": "text",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "iconoUrl",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "curso_categoria"
+    },
+    {
+      "type": "integer",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": "0",
+      "generated": null,
+      "identity": null,
+      "name": "orden",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "curso_categoria"
+    },
+    {
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "gen_random_uuid()",
+      "generated": null,
+      "identity": null,
+      "name": "id",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "curso_subcategoria"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "name": "creado",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "curso_subcategoria"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "name": "modificado",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "curso_subcategoria"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "eliminado",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "curso_subcategoria"
+    },
+    {
+      "type": "text",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "nombre",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "curso_subcategoria"
+    },
+    {
+      "type": "text",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "slug",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "curso_subcategoria"
+    },
+    {
+      "type": "text",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "descripcion",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "curso_subcategoria"
+    },
+    {
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "cursoCategoriaId",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "curso_subcategoria"
+    },
+    {
+      "type": "integer",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": "0",
+      "generated": null,
+      "identity": null,
+      "name": "orden",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "curso_subcategoria"
+    },
+    {
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "gen_random_uuid()",
+      "generated": null,
+      "identity": null,
+      "name": "id",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "leccion"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "name": "creado",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "leccion"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "name": "modificado",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "leccion"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "eliminado",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "leccion"
+    },
+    {
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "idcurso",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "leccion"
+    },
+    {
+      "type": "text",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "titulo",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "leccion"
+    },
+    {
+      "type": "text",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "descripcion",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "leccion"
+    },
+    {
+      "type": "text",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "slug",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "leccion"
+    },
+    {
+      "type": "integer",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "orden",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "leccion"
+    },
+    {
+      "type": "integer",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": "0",
+      "generated": null,
+      "identity": null,
+      "name": "duracionSegundos",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "leccion"
+    },
+    {
+      "type": "text",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "videoUrl",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "leccion"
+    },
+    {
+      "type": "text",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "contenidoMarkdown",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "leccion"
+    },
+    {
+      "type": "tipo_leccion",
+      "typeSchema": "public",
+      "notNull": false,
+      "dimensions": 0,
+      "default": "'video'",
+      "generated": null,
+      "identity": null,
+      "name": "tipo",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "leccion"
+    },
+    {
+      "type": "boolean",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": "false",
+      "generated": null,
+      "identity": null,
+      "name": "publicado",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "leccion"
+    },
+    {
+      "type": "boolean",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": "false",
+      "generated": null,
+      "identity": null,
+      "name": "esPreview",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "leccion"
+    },
+    {
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "gen_random_uuid()",
+      "generated": null,
+      "identity": null,
+      "name": "id",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "maestro"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "name": "creado",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "maestro"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "name": "modificado",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "maestro"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "eliminado",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "maestro"
+    },
+    {
+      "type": "text",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "nombre",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "maestro"
+    },
+    {
+      "type": "text",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "apellido",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "maestro"
+    },
+    {
+      "type": "text",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "email",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "maestro"
+    },
+    {
+      "type": "boolean",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": "false",
+      "generated": null,
+      "identity": null,
+      "name": "emailVerificado",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "maestro"
+    },
+    {
+      "type": "text",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "passwordHash",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "maestro"
+    },
+    {
+      "type": "text",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "proveedorOAuth",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "maestro"
+    },
+    {
+      "type": "text",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "proveedorOAuthId",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "maestro"
+    },
+    {
+      "type": "text",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "avatarUrl",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "maestro"
+    },
+    {
+      "type": "text",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "biografia",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "maestro"
+    },
+    {
+      "type": "text",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "especialidad",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "maestro"
+    },
+    {
+      "type": "boolean",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": "false",
+      "generated": null,
+      "identity": null,
+      "name": "verificado",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "maestro"
+    },
+    {
+      "type": "estado_maestro",
+      "typeSchema": "public",
+      "notNull": false,
+      "dimensions": 0,
+      "default": "'pendiente'",
+      "generated": null,
+      "identity": null,
+      "name": "estado",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "maestro"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "ultimoLogin",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "maestro"
+    },
+    {
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "gen_random_uuid()",
+      "generated": null,
+      "identity": null,
+      "name": "id",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "matricula"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "name": "creado",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "matricula"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "name": "modificado",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "matricula"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "eliminado",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "matricula"
+    },
+    {
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "idusuario",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "matricula"
+    },
+    {
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "idcurso",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "matricula"
+    },
+    {
+      "type": "integer",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "precioPagadoCentavos",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "matricula"
+    },
+    {
+      "type": "text",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": "'MXN'",
+      "generated": null,
+      "identity": null,
+      "name": "moneda",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "matricula"
+    },
+    {
+      "type": "numeric(5,2)",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": "'0.00'",
+      "generated": null,
+      "identity": null,
+      "name": "progreso",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "matricula"
+    },
+    {
+      "type": "boolean",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": "false",
+      "generated": null,
+      "identity": null,
+      "name": "completado",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "matricula"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "fechaCompletado",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "matricula"
+    },
+    {
+      "type": "text",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "certificadoUrl",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "matricula"
+    },
+    {
+      "type": "estado_matricula",
+      "typeSchema": "public",
+      "notNull": false,
+      "dimensions": 0,
+      "default": "'activa'",
+      "generated": null,
+      "identity": null,
+      "name": "estado",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "matricula"
+    },
+    {
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "gen_random_uuid()",
+      "generated": null,
+      "identity": null,
+      "name": "id",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "metodo_pago"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "name": "creado",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "metodo_pago"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "name": "modificado",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "metodo_pago"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "eliminado",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "metodo_pago"
+    },
+    {
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "idusuario",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "metodo_pago"
+    },
+    {
+      "type": "tipo_metodo_pago",
+      "typeSchema": "public",
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "tipo",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "metodo_pago"
+    },
+    {
+      "type": "varchar",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "pasarela",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "metodo_pago"
+    },
+    {
+      "type": "text",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "pasarelaMetodoId",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "metodo_pago"
+    },
+    {
+      "type": "text",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "ultimos4",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "metodo_pago"
+    },
+    {
+      "type": "varchar",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "marca",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "metodo_pago"
+    },
+    {
+      "type": "smallint",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "expiraMes",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "metodo_pago"
+    },
+    {
+      "type": "smallint",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "expiraAnio",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "metodo_pago"
+    },
+    {
+      "type": "text",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "alias",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "metodo_pago"
+    },
+    {
+      "type": "boolean",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": "false",
+      "generated": null,
+      "identity": null,
+      "name": "esDefault",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "metodo_pago"
+    },
+    {
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "gen_random_uuid()",
+      "generated": null,
+      "identity": null,
+      "name": "id",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "pago"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "name": "creado",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "pago"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "name": "modificado",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "pago"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "eliminado",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "pago"
+    },
+    {
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "idusuario",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "pago"
+    },
+    {
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "idcurso",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "pago"
+    },
+    {
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "idmatricula",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "pago"
+    },
+    {
+      "type": "integer",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "montoCentavos",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "pago"
+    },
+    {
+      "type": "text",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": "'MXN'",
+      "generated": null,
+      "identity": null,
+      "name": "moneda",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "pago"
+    },
+    {
+      "type": "estado_pago",
+      "typeSchema": "public",
+      "notNull": false,
+      "dimensions": 0,
+      "default": "'pendiente'",
+      "generated": null,
+      "identity": null,
+      "name": "estado",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "pago"
+    },
+    {
+      "type": "varchar",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "pasarela",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "pago"
+    },
+    {
+      "type": "text",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "pasarelaPagoId",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "pago"
+    },
+    {
+      "type": "tipo_pago",
+      "typeSchema": "public",
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "tipo",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "pago"
+    },
+    {
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "gen_random_uuid()",
+      "generated": null,
+      "identity": null,
+      "name": "id",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "resena"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "name": "creado",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "resena"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "name": "modificado",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "resena"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "eliminado",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "resena"
+    },
+    {
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "idusuario",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "resena"
+    },
+    {
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "idcurso",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "resena"
+    },
+    {
+      "type": "integer",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "calificacion",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "resena"
+    },
+    {
+      "type": "text",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "comentario",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "resena"
+    },
+    {
+      "type": "boolean",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": "true",
+      "generated": null,
+      "identity": null,
+      "name": "aprobado",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "resena"
+    },
+    {
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "gen_random_uuid()",
+      "generated": null,
+      "identity": null,
+      "name": "id",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "usuario"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "name": "creado",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "usuario"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "name": "modificado",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "usuario"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "eliminado",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "usuario"
+    },
+    {
+      "type": "text",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "nombre",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "usuario"
+    },
+    {
+      "type": "text",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "apellido",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "usuario"
+    },
+    {
+      "type": "text",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "email",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "usuario"
+    },
+    {
+      "type": "boolean",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": "false",
+      "generated": null,
+      "identity": null,
+      "name": "emailVerificado",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "usuario"
+    },
+    {
+      "type": "text",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "passwordHash",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "usuario"
+    },
+    {
+      "type": "text",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "proveedorOAuth",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "usuario"
+    },
+    {
+      "type": "text",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "proveedorOAuthId",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "usuario"
+    },
+    {
+      "type": "text",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "avatarUrl",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "usuario"
+    },
+    {
+      "type": "text",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "biografia",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "usuario"
+    },
+    {
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "metodoPagoDefaultId",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "usuario"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "ultimoLogin",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "usuario"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        {
+          "value": "slug",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        }
+      ],
+      "isUnique": true,
+      "where": "\"eliminado\" IS NULL",
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "name": "curso_slug_unico_activo",
+      "entityType": "indexes",
+      "schema": "public",
+      "table": "curso"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        {
+          "value": "publicado",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        },
+        {
+          "value": "creado",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "name": "curso_publicado_creado_idx",
+      "entityType": "indexes",
+      "schema": "public",
+      "table": "curso"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        {
+          "value": "maestroId",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "name": "curso_maestro_idx",
+      "entityType": "indexes",
+      "schema": "public",
+      "table": "curso"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        {
+          "value": "cursoSubcategoriaId",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "name": "curso_subcategoria_idx",
+      "entityType": "indexes",
+      "schema": "public",
+      "table": "curso"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        {
+          "value": "slug",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        }
+      ],
+      "isUnique": true,
+      "where": "\"eliminado\" IS NULL",
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "name": "curso_categoria_slug_unico_activo",
+      "entityType": "indexes",
+      "schema": "public",
+      "table": "curso_categoria"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        {
+          "value": "orden",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "name": "curso_categoria_orden_idx",
+      "entityType": "indexes",
+      "schema": "public",
+      "table": "curso_categoria"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        {
+          "value": "cursoCategoriaId",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        },
+        {
+          "value": "slug",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        }
+      ],
+      "isUnique": true,
+      "where": "\"eliminado\" IS NULL",
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "name": "curso_subcategoria_slug_categoria_unico",
+      "entityType": "indexes",
+      "schema": "public",
+      "table": "curso_subcategoria"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        {
+          "value": "cursoCategoriaId",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "name": "curso_subcategoria_categoria_idx",
+      "entityType": "indexes",
+      "schema": "public",
+      "table": "curso_subcategoria"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        {
+          "value": "idcurso",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        },
+        {
+          "value": "orden",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        }
+      ],
+      "isUnique": true,
+      "where": "\"eliminado\" IS NULL",
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "name": "leccion_curso_orden_unico",
+      "entityType": "indexes",
+      "schema": "public",
+      "table": "leccion"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        {
+          "value": "idcurso",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        },
+        {
+          "value": "slug",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        }
+      ],
+      "isUnique": true,
+      "where": "\"slug\" IS NOT NULL AND \"eliminado\" IS NULL",
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "name": "leccion_curso_slug_unico",
+      "entityType": "indexes",
+      "schema": "public",
+      "table": "leccion"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        {
+          "value": "idcurso",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        },
+        {
+          "value": "publicado",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "name": "leccion_curso_publicado_idx",
+      "entityType": "indexes",
+      "schema": "public",
+      "table": "leccion"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        {
+          "value": "email",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        }
+      ],
+      "isUnique": true,
+      "where": "\"eliminado\" IS NULL",
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "name": "maestro_email_unico_activo",
+      "entityType": "indexes",
+      "schema": "public",
+      "table": "maestro"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        {
+          "value": "proveedorOAuth",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        },
+        {
+          "value": "proveedorOAuthId",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        }
+      ],
+      "isUnique": true,
+      "where": "\"proveedorOAuth\" IS NOT NULL",
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "name": "maestro_proveedor_oauth_unico",
+      "entityType": "indexes",
+      "schema": "public",
+      "table": "maestro"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        {
+          "value": "estado",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "name": "maestro_estado_idx",
+      "entityType": "indexes",
+      "schema": "public",
+      "table": "maestro"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        {
+          "value": "idusuario",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        },
+        {
+          "value": "idcurso",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        }
+      ],
+      "isUnique": true,
+      "where": "\"eliminado\" IS NULL",
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "name": "matricula_usuario_curso_unico",
+      "entityType": "indexes",
+      "schema": "public",
+      "table": "matricula"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        {
+          "value": "idusuario",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "name": "matricula_usuario_idx",
+      "entityType": "indexes",
+      "schema": "public",
+      "table": "matricula"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        {
+          "value": "idcurso",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "name": "matricula_curso_idx",
+      "entityType": "indexes",
+      "schema": "public",
+      "table": "matricula"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        {
+          "value": "estado",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "name": "matricula_estado_idx",
+      "entityType": "indexes",
+      "schema": "public",
+      "table": "matricula"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        {
+          "value": "idusuario",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        }
+      ],
+      "isUnique": true,
+      "where": "\"esDefault\" = true AND \"eliminado\" IS NULL",
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "name": "metodo_pago_default_unico_por_usuario",
+      "entityType": "indexes",
+      "schema": "public",
+      "table": "metodo_pago"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        {
+          "value": "idusuario",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "name": "metodo_pago_usuario_idx",
+      "entityType": "indexes",
+      "schema": "public",
+      "table": "metodo_pago"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        {
+          "value": "idusuario",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        },
+        {
+          "value": "creado",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "name": "pago_usuario_creado_idx",
+      "entityType": "indexes",
+      "schema": "public",
+      "table": "pago"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        {
+          "value": "idcurso",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "name": "pago_curso_idx",
+      "entityType": "indexes",
+      "schema": "public",
+      "table": "pago"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        {
+          "value": "estado",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "name": "pago_estado_idx",
+      "entityType": "indexes",
+      "schema": "public",
+      "table": "pago"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        {
+          "value": "pasarelaPagoId",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "name": "pago_pasarela_pago_id_idx",
+      "entityType": "indexes",
+      "schema": "public",
+      "table": "pago"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        {
+          "value": "idusuario",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        },
+        {
+          "value": "idcurso",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        }
+      ],
+      "isUnique": true,
+      "where": "\"eliminado\" IS NULL",
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "name": "resena_usuario_curso_unico",
+      "entityType": "indexes",
+      "schema": "public",
+      "table": "resena"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        {
+          "value": "idcurso",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "name": "resena_curso_idx",
+      "entityType": "indexes",
+      "schema": "public",
+      "table": "resena"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        {
+          "value": "email",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        }
+      ],
+      "isUnique": true,
+      "where": "\"eliminado\" IS NULL",
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "name": "usuario_email_unico_activo",
+      "entityType": "indexes",
+      "schema": "public",
+      "table": "usuario"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        {
+          "value": "proveedorOAuth",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        },
+        {
+          "value": "proveedorOAuthId",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        }
+      ],
+      "isUnique": true,
+      "where": "\"proveedorOAuth\" IS NOT NULL",
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "name": "usuario_proveedor_oauth_unico",
+      "entityType": "indexes",
+      "schema": "public",
+      "table": "usuario"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        {
+          "value": "ultimoLogin",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "name": "usuario_ultimo_login_idx",
+      "entityType": "indexes",
+      "schema": "public",
+      "table": "usuario"
+    },
+    {
+      "nameExplicit": false,
+      "columns": [
+        "maestroId"
+      ],
+      "schemaTo": "public",
+      "tableTo": "maestro",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "RESTRICT",
+      "name": "curso_maestroId_maestro_id_fkey",
+      "entityType": "fks",
+      "schema": "public",
+      "table": "curso"
+    },
+    {
+      "nameExplicit": false,
+      "columns": [
+        "cursoSubcategoriaId"
+      ],
+      "schemaTo": "public",
+      "tableTo": "curso_subcategoria",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "RESTRICT",
+      "name": "curso_cursoSubcategoriaId_curso_subcategoria_id_fkey",
+      "entityType": "fks",
+      "schema": "public",
+      "table": "curso"
+    },
+    {
+      "nameExplicit": false,
+      "columns": [
+        "cursoCategoriaId"
+      ],
+      "schemaTo": "public",
+      "tableTo": "curso_categoria",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "RESTRICT",
+      "name": "curso_subcategoria_cursoCategoriaId_curso_categoria_id_fkey",
+      "entityType": "fks",
+      "schema": "public",
+      "table": "curso_subcategoria"
+    },
+    {
+      "nameExplicit": false,
+      "columns": [
+        "idcurso"
+      ],
+      "schemaTo": "public",
+      "tableTo": "curso",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "name": "leccion_idcurso_curso_id_fkey",
+      "entityType": "fks",
+      "schema": "public",
+      "table": "leccion"
+    },
+    {
+      "nameExplicit": false,
+      "columns": [
+        "idusuario"
+      ],
+      "schemaTo": "public",
+      "tableTo": "usuario",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "name": "matricula_idusuario_usuario_id_fkey",
+      "entityType": "fks",
+      "schema": "public",
+      "table": "matricula"
+    },
+    {
+      "nameExplicit": false,
+      "columns": [
+        "idcurso"
+      ],
+      "schemaTo": "public",
+      "tableTo": "curso",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "RESTRICT",
+      "name": "matricula_idcurso_curso_id_fkey",
+      "entityType": "fks",
+      "schema": "public",
+      "table": "matricula"
+    },
+    {
+      "nameExplicit": false,
+      "columns": [
+        "idusuario"
+      ],
+      "schemaTo": "public",
+      "tableTo": "usuario",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "name": "metodo_pago_idusuario_usuario_id_fkey",
+      "entityType": "fks",
+      "schema": "public",
+      "table": "metodo_pago"
+    },
+    {
+      "nameExplicit": false,
+      "columns": [
+        "idusuario"
+      ],
+      "schemaTo": "public",
+      "tableTo": "usuario",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "RESTRICT",
+      "name": "pago_idusuario_usuario_id_fkey",
+      "entityType": "fks",
+      "schema": "public",
+      "table": "pago"
+    },
+    {
+      "nameExplicit": false,
+      "columns": [
+        "idcurso"
+      ],
+      "schemaTo": "public",
+      "tableTo": "curso",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "RESTRICT",
+      "name": "pago_idcurso_curso_id_fkey",
+      "entityType": "fks",
+      "schema": "public",
+      "table": "pago"
+    },
+    {
+      "nameExplicit": false,
+      "columns": [
+        "idmatricula"
+      ],
+      "schemaTo": "public",
+      "tableTo": "matricula",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "SET NULL",
+      "name": "pago_idmatricula_matricula_id_fkey",
+      "entityType": "fks",
+      "schema": "public",
+      "table": "pago"
+    },
+    {
+      "nameExplicit": false,
+      "columns": [
+        "idusuario"
+      ],
+      "schemaTo": "public",
+      "tableTo": "usuario",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "name": "resena_idusuario_usuario_id_fkey",
+      "entityType": "fks",
+      "schema": "public",
+      "table": "resena"
+    },
+    {
+      "nameExplicit": false,
+      "columns": [
+        "idcurso"
+      ],
+      "schemaTo": "public",
+      "tableTo": "curso",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "name": "resena_idcurso_curso_id_fkey",
+      "entityType": "fks",
+      "schema": "public",
+      "table": "resena"
+    },
+    {
+      "columns": [
+        "id"
+      ],
+      "nameExplicit": false,
+      "name": "curso_pkey",
+      "schema": "public",
+      "table": "curso",
+      "entityType": "pks"
+    },
+    {
+      "columns": [
+        "id"
+      ],
+      "nameExplicit": false,
+      "name": "curso_categoria_pkey",
+      "schema": "public",
+      "table": "curso_categoria",
+      "entityType": "pks"
+    },
+    {
+      "columns": [
+        "id"
+      ],
+      "nameExplicit": false,
+      "name": "curso_subcategoria_pkey",
+      "schema": "public",
+      "table": "curso_subcategoria",
+      "entityType": "pks"
+    },
+    {
+      "columns": [
+        "id"
+      ],
+      "nameExplicit": false,
+      "name": "leccion_pkey",
+      "schema": "public",
+      "table": "leccion",
+      "entityType": "pks"
+    },
+    {
+      "columns": [
+        "id"
+      ],
+      "nameExplicit": false,
+      "name": "maestro_pkey",
+      "schema": "public",
+      "table": "maestro",
+      "entityType": "pks"
+    },
+    {
+      "columns": [
+        "id"
+      ],
+      "nameExplicit": false,
+      "name": "matricula_pkey",
+      "schema": "public",
+      "table": "matricula",
+      "entityType": "pks"
+    },
+    {
+      "columns": [
+        "id"
+      ],
+      "nameExplicit": false,
+      "name": "metodo_pago_pkey",
+      "schema": "public",
+      "table": "metodo_pago",
+      "entityType": "pks"
+    },
+    {
+      "columns": [
+        "id"
+      ],
+      "nameExplicit": false,
+      "name": "pago_pkey",
+      "schema": "public",
+      "table": "pago",
+      "entityType": "pks"
+    },
+    {
+      "columns": [
+        "id"
+      ],
+      "nameExplicit": false,
+      "name": "resena_pkey",
+      "schema": "public",
+      "table": "resena",
+      "entityType": "pks"
+    },
+    {
+      "columns": [
+        "id"
+      ],
+      "nameExplicit": false,
+      "name": "usuario_pkey",
+      "schema": "public",
+      "table": "usuario",
+      "entityType": "pks"
+    },
+    {
+      "value": "\"precioCentavos\" >= 0 AND (\"precioActualCentavos\" IS NULL OR \"precioActualCentavos\" >= 0)",
+      "name": "curso_precio_no_negativo",
+      "entityType": "checks",
+      "schema": "public",
+      "table": "curso"
+    },
+    {
+      "value": "\"calificacion\" >= 0 AND \"calificacion\" <= 5",
+      "name": "curso_calificacion_rango",
+      "entityType": "checks",
+      "schema": "public",
+      "table": "curso"
+    },
+    {
+      "value": "\"progreso\" >= 0 AND \"progreso\" <= 100",
+      "name": "matricula_progreso_rango",
+      "entityType": "checks",
+      "schema": "public",
+      "table": "matricula"
+    },
+    {
+      "value": "\"expiraMes\" IS NULL OR (\"expiraMes\" BETWEEN 1 AND 12)",
+      "name": "metodo_pago_expira_mes_rango",
+      "entityType": "checks",
+      "schema": "public",
+      "table": "metodo_pago"
+    },
+    {
+      "value": "\"montoCentavos\" >= 0",
+      "name": "pago_monto_no_negativo",
+      "entityType": "checks",
+      "schema": "public",
+      "table": "pago"
+    },
+    {
+      "value": "\"calificacion\" BETWEEN 1 AND 5",
+      "name": "resena_calificacion_rango",
+      "entityType": "checks",
+      "schema": "public",
+      "table": "resena"
+    }
+  ],
+  "renames": []
+}

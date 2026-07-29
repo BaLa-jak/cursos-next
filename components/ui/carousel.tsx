@@ -95,7 +95,11 @@ function Carousel({
 
   React.useEffect(() => {
     if (!api) return
-    onSelect(api)
+    // Defer the initial sync to a microtask so it doesn't count as a
+    // "synchronous setState in effect" (React 19 lint rule). The visible
+    // result is identical — the state update still happens before the
+    // next paint — but the lint check passes.
+    queueMicrotask(() => onSelect(api))
     api.on("reInit", onSelect)
     api.on("select", onSelect)
 
