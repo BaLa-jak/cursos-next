@@ -25,7 +25,7 @@ export default function Error({
   return (
     <main className="mx-auto flex max-w-2xl flex-col items-start gap-4 p-8">
       <h1 className="text-2xl font-bold">Algo salió mal</h1>
-      <p className="text-gray-500">
+      <p className="text-muted-foreground">
         No pudimos cargar esta sección. Vuelve a intentarlo.
       </p>
 
@@ -36,7 +36,7 @@ export default function Error({
         No lo reemplaces imprimiendo el error completo.
       */}
       {error.digest && (
-        <p className="text-xs text-gray-400">Referencia: {error.digest}</p>
+        <p className="text-xs text-muted-foreground">Referencia: {error.digest}</p>
       )}
 
       <div className="mt-2 flex gap-4">
@@ -46,7 +46,7 @@ export default function Error({
         >
           Reintentar
         </button>
-        <Link href="/" className="self-center text-sm underline">
+        <Link href="/" transitionTypes={["nav-forward"]} className="self-center text-sm underline">
           Ir al inicio
         </Link>
       </div>
