@@ -77,7 +77,7 @@ export function Footer() {
   return (
     <footer className="mt-auto border-t border-border bg-background text-foreground">
       <div className="mx-auto w-full max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-        {/* Newsletter section */}
+        {}
         <div className="grid gap-10 lg:grid-cols-2 lg:gap-16">
           <div className="space-y-4">
             <div className="flex items-center gap-2">
@@ -133,7 +133,7 @@ export function Footer() {
 
         <Separator className="my-10" />
 
-        {/* Links grid */}
+        {}
         <nav
           aria-label="Enlaces del footer"
           className="grid grid-cols-2 gap-8 md:grid-cols-4"
@@ -168,7 +168,7 @@ export function Footer() {
 
         <Separator className="my-8" />
 
-        {/* Bottom bar */}
+        {}
         <div className="flex flex-col items-center justify-between gap-4 text-center sm:flex-row sm:text-left">
           <p className="text-xs text-muted-foreground">
             © {year} cursos-next. Todos los derechos reservados.

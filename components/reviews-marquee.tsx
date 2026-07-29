@@ -76,8 +76,6 @@ const reviewsBottom: Review[] = [
   },
 ];
 
-// CSS mask gradient creates the "slight blur" fade on both edges so cards
-// dissolve into the background as they enter/exit the visible area.
 const EDGE_MASK =
   "mask-[linear-gradient(to_right,transparent_0,black_120px,black_calc(100%_-_120px),transparent_100%)]";
 
@@ -93,10 +91,6 @@ export function ReviewsMarquee() {
       const mm = gsap.matchMedia();
 
       mm.add("(prefers-reduced-motion: no-preference)", () => {
-        // Top marquee: scrolls LEFT → RIGHT. We start at xPercent: -50
-        // (second copy visible at the left edge) and animate to 0
-        // (first copy at the left edge). Because the content is
-        // duplicated, the loop is seamless.
         if (topTrackRef.current) {
           topTweenRef.current = gsap.fromTo(
             topTrackRef.current,
@@ -105,9 +99,6 @@ export function ReviewsMarquee() {
           );
         }
 
-        // Bottom marquee: scrolls RIGHT → LEFT (the conventional
-        // direction). Slightly different duration creates a layered,
-        // non-synced rhythm between the two rows.
         if (bottomTrackRef.current) {
           bottomTweenRef.current = gsap.fromTo(
             bottomTrackRef.current,
@@ -120,7 +111,6 @@ export function ReviewsMarquee() {
     { scope: containerRef }
   );
 
-  // Pause each marquee on hover so users can read a card.
   useEffect(() => {
     const topEl = topTrackRef.current;
     const bottomEl = bottomTrackRef.current;
@@ -159,7 +149,7 @@ export function ReviewsMarquee() {
         </h2>
       </div>
 
-      {/* Top row — scrolls left to right */}
+      {}
       <div className={`overflow-hidden ${EDGE_MASK}`}>
         <div ref={topTrackRef} className="flex w-max gap-6 py-4">
           {[...reviewsTop, ...reviewsTop].map((r, i) => (
@@ -168,7 +158,7 @@ export function ReviewsMarquee() {
         </div>
       </div>
 
-      {/* Bottom row — scrolls right to left */}
+      {}
       <div className={`overflow-hidden ${EDGE_MASK} mt-6`}>
         <div ref={bottomTrackRef} className="flex w-max gap-6 py-4">
           {[...reviewsBottom, ...reviewsBottom].map((r, i) => (

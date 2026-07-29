@@ -135,9 +135,6 @@ export function TrendingCourses() {
     { scope: containerRef }
   );
 
-  // Safety net: if GSAP never runs (JS error, plugin missing) the CSS
-  // keeps .rise/.rise-s at opacity 0 forever. Force them visible so the
-  // section stays readable. Matches the same pattern used in HomeLanding.
   useEffect(() => {
     const fallback = setTimeout(() => {
       const allReveals = containerRef.current?.querySelectorAll<HTMLElement>(
@@ -206,13 +203,13 @@ export function TrendingCourses() {
               transitionTypes={["nav-forward"]}
               className="cell py-7 px-7 flex flex-col justify-between min-h-[340px] bg-background"
             >
-              {/* Top: trend + rank */}
+              {}
               <div className="flex items-center justify-between font-mono text-[11px] tracking-tight">
                 <span className="text-sky">{c.trend}</span>
                 <span className="text-sky font-medium">N.º {c.rank}</span>
               </div>
 
-              {/* Middle: cat + title + sub */}
+              {}
               <div className="mt-6">
                 <div className="font-mono text-[11px] text-muted-foreground tracking-tight">
                   {c.cat}
@@ -225,14 +222,12 @@ export function TrendingCourses() {
                 </p>
               </div>
 
-              {/* Bottom: meta + price */}
+              {}
               <div className="mt-6 pt-4 border-t border-border">
                 <div className="text-[12px] text-muted-foreground">
                   {c.author} · {c.time} · {c.level}
                 </div>
-                {/* Stack en móvil — rating + enrolled + precio con
-                    whitespace-nowrap no caben side-by-side en ≈242px de
-                    ancho interno. En `sm:` vuelven a fila justificada. */}
+                {}
                 <div className="flex flex-col gap-2 mt-3 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
                   <span className="font-mono text-[10px] text-muted-foreground/70 tracking-tight whitespace-nowrap">
                     <span className="text-sky">★ {c.rating}</span>

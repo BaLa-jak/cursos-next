@@ -1,21 +1,5 @@
 "use client";
 
-/**
- * Carrito — slide-out cart drawer used from the navbar.
- *
- * Composed from a single `<CarritoRoot>` mounted in the root layout that
- * owns the cart state (persisted to localStorage) and renders the Sheet.
- * The navbar mounts a `<CarritoTrigger>` to open it from any page.
- *
- * Anywhere in the tree you can call `useCarrito()` to read state or add
- * items, e.g.:
- *
- *   const { addItem } = useCarrito();
- *   <Button onClick={() => addItem({ id, slug, title, priceCents, author })}>
- *     Agregar al carrito
- *   </Button>
- */
-
 import * as React from "react";
 import Link from "next/link";
 import {
@@ -36,28 +20,18 @@ import {
 } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
 
-// ─── Types ────────────────────────────────────────────────────────────────────
-
 export type CartItem = {
-  /** Stable identifier (course id or slug). De-duplicates on add. */
   id: string;
-  /** URL slug used to build a link to `/courses/[slug]`. */
   slug: string;
-  /** Display title. */
   title: string;
-  /** Price stored in cents to avoid float drift. */
   priceCents: number;
-  /** Optional course author shown under the title in the list row. */
   author?: string;
-  /** Quantity added to the cart. Must be ≥ 1. */
   qty: number;
 };
 
 type CartContextValue = {
   items: CartItem[];
-  /** True once localStorage has been read on the client. */
   isReady: boolean;
-  /** True after `addItem` has been called at least once. */
   hasAdded: boolean;
   totalItems: number;
   totalCents: number;
@@ -74,16 +48,6 @@ type CartContextValue = {
 const CartContext = React.createContext<CartContextValue | null>(null);
 
 const STORAGE_KEY = "cursos-next:cart:v1";
-
-// ─── External store ───────────────────────────────────────────────────────────
-//
-// State lives in a module-level store so we can use React 18+
-// `useSyncExternalStore`. This gives us:
-//   • SSR-safe snapshots (server snapshot = `[]`, matches empty client
-//     pre-hydration snapshot, so no hydration mismatch).
-//   • Lazy localStorage hydration that doesn't require `setState` inside
-//     an effect — which is what React's `react-hooks/set-state-in-effect`
-//     rule exists to prevent (cascading renders).
 
 type CartStore = {
   subscribe: (listener: () => void) => () => void;
@@ -111,7 +75,6 @@ function writeStorage(items: CartItem[]) {
   try {
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
   } catch {
-    // localStorage may be unavailable (private mode, quota); fail silently.
   }
 }
 
@@ -163,13 +126,10 @@ function createCartStore(): CartStore {
 
   function set(next: CartItem[]) {
     items = next;
-    // Only persist after hydration, so we don't immediately overwrite
-    // storage with the empty initial snapshot.
     if (hydrated) writeStorage(next);
     notify();
   }
 
-  // Sync across tabs. Bound on the client only; harmless if it never runs.
   if (typeof window !== "undefined") {
     window.addEventListener("storage", (event) => {
       if (event.key !== STORAGE_KEY) return;
@@ -184,26 +144,16 @@ function createCartStore(): CartStore {
 
 const cartStore = createCartStore();
 
-// ─── Provider ─────────────────────────────────────────────────────────────────
-
 function CarritoProvider({ children }: { children: React.ReactNode }) {
-  // useSyncExternalStore is the canonical way to subscribe to state living
-  // outside React. Snapshot identity is stable across renders (same array
-  // reference until `set()` produces a new one), so React can bail out.
   const items = React.useSyncExternalStore(
     cartStore.subscribe,
     cartStore.getSnapshot,
     cartStore.getServerSnapshot,
   );
 
-  // Open/close state and "user has added at least once" flag stay local to
-  // the provider since they don't need to survive reloads.
   const [open, setOpen] = React.useState(false);
   const [hasAdded, setHasAdded] = React.useState(false);
 
-  // Lazy hydration from localStorage. Safe to call in an effect: we don't
-  // touch React state here — we notify the external store, and React's
-  // `useSyncExternalStore` schedules the update through its own path.
   React.useEffect(() => {
     cartStore.hydrate();
   }, []);
@@ -259,8 +209,6 @@ function CarritoProvider({ children }: { children: React.ReactNode }) {
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 }
 
-// ─── Hook ─────────────────────────────────────────────────────────────────────
-
 export function useCarrito(): CartContextValue {
   const ctx = React.useContext(CartContext);
   if (!ctx) {
@@ -269,13 +217,9 @@ export function useCarrito(): CartContextValue {
   return ctx;
 }
 
-// Safe variant for components that may render outside the provider (e.g.
-// shared building blocks). Returns `null` instead of throwing.
 export function useCarritoOptional(): CartContextValue | null {
   return React.useContext(CartContext);
 }
-
-// ─── Formatting ───────────────────────────────────────────────────────────────
 
 function formatPrice(cents: number, currency = "MXN"): string {
   return new Intl.NumberFormat("es-MX", {
@@ -290,16 +234,6 @@ function thumbnailLabel(slug: string): string {
   return (cleaned.slice(0, 3) || "CUR").toUpperCase();
 }
 
-// ─── Trigger ──────────────────────────────────────────────────────────────────
-
-/**
- * Botón que abre el carrito. Pensado para vivir en la barra de navegación.
- * Muestra un badge con la cuenta total cuando hay cursos agregados.
- *
- * Por defecto es icon-only (variant="ghost" size="icon-sm"). Si pasás
- * `showLabel` se renderiza con la palabra "Carrito" al lado del ícono —
- * útil en layouts anchos donde querés reforzar la CTA.
- */
 function CarritoTrigger({
   className,
   showLabel = false,
@@ -329,7 +263,6 @@ function CarritoTrigger({
           aria-hidden="true"
           className={cn(
             "absolute -top-0.5 -right-0.5 flex min-w-[18px] h-[18px] items-center justify-center rounded-full bg-sky px-1 text-[10px] font-mono font-medium tabular-nums leading-none text-sky-ink",
-            // Use a stable shape so the badge doesn't dance as the count grows.
             count > 9 ? "min-w-[22px]" : null,
           )}
         >
@@ -339,8 +272,6 @@ function CarritoTrigger({
     </Button>
   );
 }
-
-// ─── Empty state ─────────────────────────────────────────────────────────────
 
 function CartEmpty() {
   return (
@@ -367,8 +298,6 @@ function CartEmpty() {
     </div>
   );
 }
-
-// ─── Line item ───────────────────────────────────────────────────────────────
 
 function CartLine({ item }: { item: CartItem }) {
   const { updateQty, removeItem } = useCarrito();
@@ -457,8 +386,6 @@ function QuantityStepper({
   );
 }
 
-// ─── Sheet body ──────────────────────────────────────────────────────────────
-
 function CartBody() {
   const { items, totalCents, clear } = useCarrito();
   const subtotal = formatPrice(totalCents);
@@ -509,8 +436,6 @@ function CartBody() {
   );
 }
 
-// ─── Sheet (the actual drawer) ────────────────────────────────────────────────
-
 function CartDrawer() {
   const { open, setOpen, totalItems } = useCarrito();
 
@@ -544,14 +469,6 @@ function CartDrawer() {
   );
 }
 
-// ─── Public wrapper ──────────────────────────────────────────────────────────
-
-/**
- * Mount once near the root of the tree (the root layout is the natural home).
- * Owns the cart state and renders the drawer; consumers trigger it via the
- * navbar-mounted `<CarritoTrigger />` or by calling `openCart()` from
- * `useCarrito()`.
- */
 export function CarritoRoot({ children }: { children: React.ReactNode }) {
   return (
     <CarritoProvider>
@@ -560,7 +477,5 @@ export function CarritoRoot({ children }: { children: React.ReactNode }) {
     </CarritoProvider>
   );
 }
-
-// ─── Re-exports ──────────────────────────────────────────────────────────────
 
 export { CarritoTrigger, CarritoProvider };

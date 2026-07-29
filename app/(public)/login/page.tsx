@@ -18,7 +18,7 @@ export default function LoginPage() {
 
       <section className="flex items-center justify-center bg-background px-5 py-10 sm:px-8 sm:py-14 lg:py-20">
         <div className="w-full max-w-sm">
-          {/* Mobile-only brand */}
+          {}
           <Link
             href="/"
             transitionTypes={["nav-back"]}

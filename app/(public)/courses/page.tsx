@@ -7,10 +7,6 @@ export const metadata: Metadata = {
     "Catálogo completo de Cursos-next. Filtra por categoría, nivel y duración para encontrar tu próxima formación.",
 };
 
-// Esta página existe para validar que la ruta /courses se renderiza en el
-// servidor. El catálogo real se implementará cuando el módulo de cursos
-// exista en `db/schema.ts`; por ahora dejamos un punto de entrada visible
-// y el enlace a la futura ruta client-side que lo reemplazará.
 export default function CursosPage() {
   return (
     <main className="mx-auto flex w-full max-w-2xl flex-col items-start gap-3 px-5 py-10 sm:px-8 sm:py-14">

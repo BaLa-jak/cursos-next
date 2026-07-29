@@ -30,7 +30,6 @@ export function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
   const [isPending] = useState(false);
 
-  // 👇 Aquí conectas la lógica de autenticación (server action, better-auth, etc.)
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
@@ -38,7 +37,6 @@ export function LoginForm() {
     const password = formData.get("password");
     const remember = formData.get("remember") === "on";
     console.log({ email, password, remember });
-    // TODO: tu lógica de login aquí
   };
 
   return (
@@ -62,7 +60,6 @@ export function LoginForm() {
             type="button"
             variant="outline"
             className="w-full"
-            // TODO: lógica OAuth Google
           >
             <GoogleIcon className="size-4" />
             Google
@@ -71,7 +68,6 @@ export function LoginForm() {
             type="button"
             variant="outline"
             className="w-full"
-            // TODO: lógica OAuth GitHub
           >
             <GithubIcon className="size-4" />
             GitHub

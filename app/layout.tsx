@@ -7,10 +7,8 @@ import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { PageTransition } from "@/components/page-transition";
 import { CarritoRoot } from "@/components/carrito";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
-// ─── Site URL ────────────────────────────────────────────────────────────────
-// Override in production via NEXT_PUBLIC_SITE_URL. Falls back to localhost
-// in dev so metadataBase never throws and OG/Twitter URLs stay well-formed.
 const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL ??
   (process.env.VERCEL_URL
@@ -34,9 +32,6 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-// ─── Viewport ────────────────────────────────────────────────────────────────
-// In Next.js 16 this is a separate, top-level export. Putting it in
-// `metadata` triggers a deprecation warning.
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
@@ -46,9 +41,6 @@ export const viewport: Viewport = {
   ],
 };
 
-// ─── Default metadata ────────────────────────────────────────────────────────
-// Pages inherit `default` when they don't set their own title, and any page
-// that does set a string title gets the template applied ("X · Cursos-next").
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
@@ -93,22 +85,12 @@ export const metadata: Metadata = {
   },
 };
 
-// ─── Structured data ─────────────────────────────────────────────────────────
-// JSON-LD for the publisher (Organization) and the site itself (WebSite).
-// Rendered as <script type="application/ld+json"> inside <body>; both Google
-// and Bing parse JSON-LD in body just fine.
 const organizationJsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: "Cursos-next",
   url: SITE_URL,
-  // `logo` omitted intentionally — add it once /logo.svg exists so the
-  // knowledge panel can show a real image.
-  sameAs: [
-    // "https://twitter.com/cursos-next",
-    // "https://www.linkedin.com/company/cursos-next",
-    // "https://github.com/cursos-next",
-  ],
+  sameAs: [],
   contactPoint: {
     "@type": "ContactPoint",
     contactType: "customer support",
@@ -122,7 +104,6 @@ const websiteJsonLd = {
   name: "Cursos-next",
   url: SITE_URL,
   inLanguage: "es-MX",
-  // A potentialAction enables the Sitelinks Search Box in Google SERPs.
   potentialAction: {
     "@type": "SearchAction",
     target: {
@@ -152,20 +133,13 @@ export default function RootLayout({
       )}
     >
       <body className="min-h-full flex flex-col">
+        <SpeedInsights />
         <CarritoRoot>
           <Navbar />
-          {/* PageTransition envuelve SOLO {children} — navbar y footer son
-              siblings dentro de CarritoRoot, así que quedan fuera de los
-              snapshots de la View Transitions API y se mantienen estables
-              como ancla visual durante toda la animación. */}
           <PageTransition>{children}</PageTransition>
           <Footer />
         </CarritoRoot>
         <Toaster />
-
-        {/* Structured data — see consts above. dangerouslySetInnerHTML is
-            safe here because the payloads are statically built from typed
-            constants, never from user input. */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

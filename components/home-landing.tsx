@@ -109,13 +109,8 @@ const instructorStats = [
   { n: "6 sem", l: "De idea a cohorte" },
 ];
 
-// SVG path for the diagonal arrow used in CTAs
 const ARROW_PATH = "M3 13L13 3M13 3H6M13 3V10";
 
-// Module-level cache for the formatted "today" string. The date is stable
-// for the duration of a session, so we compute it once on the client and
-// reuse it. The cache is only populated by `getClientDateSnapshot` — the
-// server snapshot always returns "", so SSR never writes to it.
 let cachedDateString = "";
 
 const DATE_FORMAT_OPTIONS: Intl.DateTimeFormatOptions = {
@@ -144,10 +139,6 @@ export function HomeLanding() {
   const marqueeTweenRef = useRef<gsap.core.Tween | null>(null);
   const counterRef = useRef<HTMLSpanElement>(null);
 
-  // Computed on the client only — the server snapshot returns "" so SSR
-  // and the first client render are identical (no hydration mismatch).
-  // After hydration React switches to the client snapshot. The no-op
-  // subscribe means the value is captured once per session.
   const dateString = useSyncExternalStore(
     () => () => {},
     getClientDateSnapshot,
@@ -159,12 +150,6 @@ export function HomeLanding() {
       const mm = gsap.matchMedia();
 
       mm.add("(prefers-reduced-motion: no-preference)", () => {
-        // 1. Per-section scroll-triggered reveals. We use fromTo() with
-        //    explicit "to" states (not from()) because the CSS initial
-        //    state of .rise/.rise-s is opacity: 0; from() would read
-        //    that as the "to" state and animate 0 → 0 (no visible
-        //    change). fromTo() ignores the current state and uses the
-        //    explicit "to".
         const sections = gsap.utils.toArray<HTMLElement>(
           "section",
           containerRef.current
@@ -191,9 +176,6 @@ export function HomeLanding() {
           );
         });
 
-        // 2. Number counter for the instructor income figure. Counts
-        //    from 0 to 12,480 in Spanish thousands format ("12 480")
-        //    when the section enters the viewport.
         if (counterRef.current) {
           const counter = { value: 0 };
           gsap.to(counter, {
@@ -215,7 +197,6 @@ export function HomeLanding() {
           });
         }
 
-        // 3. Marquee — infinite horizontal scroll of categories.
         if (marqueeRef.current) {
           marqueeTweenRef.current = gsap.to(marqueeRef.current, {
             xPercent: -50,
@@ -225,7 +206,6 @@ export function HomeLanding() {
           });
         }
 
-        // 4. Pulse — the "en directo" blinking dots.
         gsap.utils.toArray<HTMLElement>(".pulse").forEach((el) => {
           gsap.to(el, {
             scale: 0.7,
@@ -241,17 +221,11 @@ export function HomeLanding() {
     { scope: containerRef }
   );
 
-  // Recalculate ScrollTrigger positions after fonts/images have loaded
-  // and the layout has settled. Without this, triggers for above-the-fold
-  // sections can fail to fire on first paint.
   useEffect(() => {
     const timer = setTimeout(() => ScrollTrigger.refresh(), 250);
     return () => clearTimeout(timer);
   }, []);
 
-  // Safety net: if GSAP never runs (JS error, plugin missing, etc.) the
-  // CSS keeps the elements at opacity: 0 forever. After 3s we force them
-  // visible so the page is at least readable.
   useEffect(() => {
     const fallback = setTimeout(() => {
       const allReveals = containerRef.current?.querySelectorAll<HTMLElement>(
@@ -267,9 +241,6 @@ export function HomeLanding() {
     return () => clearTimeout(fallback);
   }, []);
 
-  // Pause the marquee on hover. The tween is created in useGSAP, so we
-  // grab it from the ref and attach the listeners in a separate effect
-  // (useGSAP runs in useLayoutEffect, this runs after paint).
   useEffect(() => {
     const el = marqueeRef.current;
     const tween = marqueeTweenRef.current;
@@ -290,13 +261,11 @@ export function HomeLanding() {
         <style>{`.rise, .rise-s { opacity: 1 !important; transform: none !important; }`}</style>
       </noscript>
       <div ref={containerRef} className="bg-background text-foreground flex-1 flex flex-col">
-        {/* Ticker */}
+        {}
         <div className="border-b border-border flex items-center gap-4 overflow-hidden font-mono h-[34px] px-6 text-muted-foreground text-xs">
           <span className="flex items-center gap-2 shrink-0">
             <span className="pulse inline-block w-1.5 h-1.5 rounded-full bg-sky" />
-            {/* "En directo" sólo se muestra desde `sm:` — en móvil el pulse
-                basta como indicador y ahorra ~75px para que el marquee
-                tenga espacio visible. */}
+            {}
             <span className="hidden sm:inline">En directo</span>
           </span>
           <span className="hidden sm:inline shrink-0 opacity-40">·</span>
@@ -322,7 +291,7 @@ export function HomeLanding() {
           </div>
         </div>
 
-        {/* Hero */}
+        {}
         <section className="px-6 py-20 md:py-24">
           <div className="mx-auto max-w-[1320px]">
             <div className="rise flex flex-wrap items-center gap-3">
@@ -376,7 +345,7 @@ export function HomeLanding() {
               </div>
             </div>
 
-            {/* Social proof strip */}
+            {}
             <div className="rise mt-20 grid gap-6 grid-cols-1 items-center pt-6 border-t border-border">
               <div className="text-sm text-muted-foreground/70">Estudiado en</div>
               <div className="grid grid-cols-2 md:grid-cols-6 border-y border-border">
@@ -401,7 +370,7 @@ export function HomeLanding() {
           </div>
         </section>
 
-        {/* Manifiesto */}
+        {}
         <section id="manifiesto" className="border-t border-border px-6 py-20">
           <div className="mx-auto max-w-[1320px]">
             <p className="rise-s display text-[clamp(1.85rem,4.2vw,3.85rem)] leading-[1.05] max-w-[24ch] text-foreground">
@@ -425,7 +394,7 @@ export function HomeLanding() {
           </div>
         </section>
 
-        {/* Catálogo destacado */}
+        {}
         <section className="border-t border-border px-6 py-20">
           <div className="mx-auto max-w-[1320px]">
             <div className="flex flex-wrap items-end justify-between gap-8 mb-12">
@@ -444,9 +413,9 @@ export function HomeLanding() {
               </Link>
             </div>
 
-            {/* Asymmetric grid: 1 large + 4 stacked small, hairline dividers */}
+            {}
             <div className="grid grid-cols-1 md:grid-cols-[1.4fr_1fr] gap-px bg-border border border-border">
-              {/* Large featured */}
+              {}
               <Link
                 href="/courses"
                 transitionTypes={["nav-forward"]}
@@ -457,9 +426,7 @@ export function HomeLanding() {
                   <span>N.º {featured.n}</span>
                 </div>
                 <div className="flex items-start gap-6 mt-8">
-                  {/* Mínimo reducido de 4.5rem a 2.75rem — en móvil (320px) el
-                      9vw es ~29px, así que sin bajar el mínimo el "05" se
-                      come el 35% del ancho de la card sin necesidad. */}
+                  {}
                   <span className="display text-[clamp(2.75rem,9vw,8rem)] leading-[0.85] text-sky">
                     {featured.n}
                   </span>
@@ -473,10 +440,7 @@ export function HomeLanding() {
                 <p className="text-base leading-[1.5] text-muted-foreground max-w-[44ch] mt-8">
                   {featured.sub}
                 </p>
-                {/* Stack en móvil — "Carmen Ríos · 22 h · Intermedio" + precio
-                    no caben side-by-side con whitespace-nowrap en el ancho
-                    de la card (≈208px). En `sm:` vuelven a fila con
-                    justify-between. */}
+                {}
                 <div className="flex flex-col gap-2 mt-8 pt-5 border-t border-border sm:flex-row sm:items-center sm:justify-between sm:gap-4">
                   <div className="text-[13px] text-muted-foreground">
                     {featured.author} · {featured.time} · {featured.level}
@@ -487,7 +451,7 @@ export function HomeLanding() {
                 </div>
               </Link>
 
-              {/* Small list */}
+              {}
               <div className="flex flex-col">
                 {courses.map((c) => (
                   <Link
@@ -503,8 +467,7 @@ export function HomeLanding() {
                     <h3 className="display text-[clamp(1.15rem,1.6vw,1.5rem)] mt-3 leading-[1.1] text-foreground max-w-[32ch]">
                       {c.title}
                     </h3>
-                    {/* Mismo problema que la featured card — stack en móvil
-                        para que autor/tiempo y precio no se pisen. */}
+                    {}
                     <div className="flex flex-col gap-2 mt-3 text-[13px] text-muted-foreground sm:flex-row sm:items-center sm:justify-between sm:gap-4">
                       <span>
                         {c.author} · {c.time}
@@ -531,7 +494,7 @@ export function HomeLanding() {
           </div>
         </section>
 
-        {/* Cómo funciona */}
+        {}
         <section id="como-funciona" className="border-t border-border px-6 py-20">
           <div className="mx-auto max-w-[1320px]">
             <h2 className="rise-s display text-[clamp(1.85rem,4vw,3.5rem)] leading-[1.05] max-w-[22ch] text-foreground mb-14">
@@ -559,7 +522,7 @@ export function HomeLanding() {
           </div>
         </section>
 
-        {/* Para instructores — invertido */}
+        {}
         <section id="instructores" className="border-t border-border bg-foreground text-background px-6 py-20">
           <div className="mx-auto max-w-[1320px]">
             <div className="grid gap-14 grid-cols-1 md:grid-cols-[1.05fr_1fr] lg:grid-cols-2 items-start">
@@ -634,10 +597,10 @@ export function HomeLanding() {
           </div>
         </section>
 
-        {/* Reseñas — dos marquesinas en direcciones opuestas */}
+        {}
         <ReviewsMarquee />
 
-        {/* Cierre */}
+        {}
         <section className="border-t border-border px-6 py-28 md:py-40 text-center">
           <div className="mx-auto max-w-[900px]">
             <div className="rise inline-flex items-center gap-3 text-muted-foreground">

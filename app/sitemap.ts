@@ -6,19 +6,6 @@ const SITE_URL =
     ? `https://${process.env.VERCEL_URL}`
     : "http://localhost:3000");
 
-/**
- * Generates /sitemap.xml at build time.
- *
- * Only canonical, indexable routes are listed:
- *  - Homepage — `priority: 1.0`, updates daily.
- *  - Course catalog (`/courses`) and category index — high priority.
- *  - Sign-in/sign-up pages — listed so brand-search users can find them,
- *    but with a low priority so they don't outrank content.
- *
- * To extend this with course detail pages once they exist, fetch the course
- * slugs from the DB and map them to `URL`s with `lastModified` from the
- * updatedAt column. Keep the sitemap under 50,000 URLs per Google's limits.
- */
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
 

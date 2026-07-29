@@ -1,10 +1,5 @@
 "use client";
 
-// Último recurso: solo entra cuando revienta el propio root layout, algo que
-// app/error.tsx no puede atrapar porque vive dentro de ese layout.
-//
-// Reemplaza al root layout, así que declara su propio <html> y <body>. Por lo
-// mismo no hereda globals.css: los estilos van inline o no se aplican.
 export default function GlobalError({
   error,
   unstable_retry,

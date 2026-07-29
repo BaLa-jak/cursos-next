@@ -40,7 +40,6 @@ export function SigninForm() {
   const [isPending] = useState(false);
   const [confirmError, setConfirmError] = useState<string | null>(null);
 
-  // 👇 Aquí conectas la lógica de registro (server action, better-auth, etc.).
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -51,8 +50,6 @@ export function SigninForm() {
     const confirmPassword = formData.get("confirmPassword");
     const terms = formData.get("terms") === "on";
 
-    // Validación cliente ligera: la fuente real de verdad será el server
-    // action cuando esté cableado. Esto evita envíos absurdos al servidor.
     if (password !== confirmPassword) {
       setConfirmError("Las contraseñas no coinciden.");
       return;
@@ -60,7 +57,6 @@ export function SigninForm() {
     setConfirmError(null);
 
     console.log({ name, email, password, terms });
-    // TODO: tu lógica de registro aquí
   };
 
   return (
@@ -85,7 +81,6 @@ export function SigninForm() {
             type="button"
             variant="outline"
             className="w-full"
-            // TODO: lógica OAuth Google
           >
             <GoogleIcon className="size-4" />
             Google
@@ -94,7 +89,6 @@ export function SigninForm() {
             type="button"
             variant="outline"
             className="w-full"
-            // TODO: lógica OAuth GitHub
           >
             <GithubIcon className="size-4" />
             GitHub

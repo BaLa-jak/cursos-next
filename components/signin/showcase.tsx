@@ -27,8 +27,7 @@ export function Showcase() {
       aria-label="Beneficios de crear una cuenta"
       className="relative hidden overflow-hidden bg-muted/40 lg:flex lg:flex-col lg:justify-between"
     >
-      {/* Misma marca decorativa que la página de login: mantiene coherencia
-          visual entre las dos vistas sin añadir ruido. */}
+      {}
       <div
         aria-hidden
         className="pointer-events-none absolute -bottom-24 -right-24 select-none text-[16rem] font-heading leading-none text-foreground/[0.04]"
@@ -37,7 +36,7 @@ export function Showcase() {
       </div>
 
       <div className="relative z-10 flex h-full flex-col gap-12 p-10 xl:p-14">
-        {/* Encabezado */}
+        {}
         <div className="flex items-center gap-2.5">
           <span className="inline-flex size-9 items-center justify-center rounded-md bg-foreground text-background">
             <BookOpen className="size-5" aria-hidden />
@@ -47,9 +46,7 @@ export function Showcase() {
           </span>
         </div>
 
-        {/* Beneficios — elijo lista de 3 frente a un único titular porque en
-            una pantalla de registro el usuario necesita razones concretas
-            para completar el alta, no solo una promesa. */}
+        {}
         <div className="mt-auto space-y-8">
           <h1 className="max-w-md text-balance text-2xl font-heading font-semibold leading-tight tracking-tight xl:text-3xl">
             Únete a la plataforma donde se aprende construyendo, no mirando.

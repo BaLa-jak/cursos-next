@@ -6,8 +6,7 @@ export function Showcase() {
       aria-label="Presentación de la plataforma"
       className="relative hidden overflow-hidden bg-muted/40 lg:flex lg:flex-col lg:justify-between"
     >
-      {/* Subtle decorative mark — keeps the panel from feeling empty
-          without adding borders, badges or any "card" affordance. */}
+      {}
       <div
         aria-hidden
         className="pointer-events-none absolute -bottom-24 -right-24 select-none text-[16rem] font-heading leading-none text-foreground/[0.04]"
@@ -16,7 +15,7 @@ export function Showcase() {
       </div>
 
       <div className="relative z-10 flex h-full flex-col gap-12 p-10 xl:p-14">
-        {/* Brand */}
+        {}
         <div className="flex items-center gap-2.5">
           <span className="inline-flex size-9 items-center justify-center rounded-md bg-foreground text-background">
             <GraduationCap className="size-5" aria-hidden />
@@ -26,7 +25,7 @@ export function Showcase() {
           </span>
         </div>
 
-        {/* Headline + tagline */}
+        {}
         <div className="mt-auto space-y-4">
           <h1 className="max-w-md text-balance text-2xl font-heading font-semibold leading-tight tracking-tight xl:text-3xl">
             Aprende haciendo, con proyectos reales y mentores que ya lo hicieron.
